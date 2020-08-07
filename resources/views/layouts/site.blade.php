@@ -1,12 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Shopo - eCommerce Template</title>
-        <meta name="description" content="Premium eCommerce Template">
+        <title>Store Fashion - Sua loja virtual</title>
+        <meta name="description" content="Store Fashion - Sua loja virtual">
 
         <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+         <!-- CSRF Token -->
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- Google Fonts -->
         <link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7COswald:300,400,500,600,700" rel="stylesheet">
@@ -83,7 +85,7 @@
                     <div class="dropdown cart-dropdown">
                         <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
                             <span class="cart-icon">
-                                <img src="site/images/bag.png" alt="Cart">
+                                <img src="{{asset('site/images/bag.png')}}" alt="Cart">
                                 <span class="cart-count">4</span>
                             </span>
                             <i class="fa fa-caret-down"></i>
@@ -94,7 +96,7 @@
                                 <div class="product">
                                     <figure class="product-image-container">
                                         <a href="product.html" title="Product Name">
-                                            <img src="site/images/products/small/product2.jpg" alt="Product Image">
+                                            <img src="{{asset('site/images/products/small/product2.jpg')}}" alt="Product Image">
                                         </a>
                                     </figure>
 
@@ -111,7 +113,7 @@
                                 <div class="product">
                                     <figure class="product-image-container">
                                         <a href="product.html" title="Product Name">
-                                            <img src="site/images/products/small/product1.jpg" alt="Product Image">
+                                            <img src="{{asset('site/images/products/small/product1.jpg')}}" alt="Product Image">
                                         </a>
                                     </figure>
 
@@ -145,7 +147,7 @@
                 <div class="sidemenu-wrapper">
                     <div class="sidemenu-header">
                         <a href="index.html" class="sidemenu-logo">
-                            <img src="assets/images/logo.png" alt="logo">
+                            <img src="{{asset('site/images/logo.png')}}" alt="logo">
                         </a>
                     </div><!-- End .sidemenu-header -->
 
@@ -194,396 +196,185 @@
             <div class="sidemenu-overlay"></div><!-- End .sidemenu-overlay -->
 
             <div class="main">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-9 col-md-push-3">
-                            <div id="rev_slider_wrapper" class="slider-container rev_slider_wrapper fullwidthbanner-container">
-                                <div id="rev_slider" class="rev_slider fullwidthabanner" style="display:none;">
-                                    <ul>
-                                        <!-- SLIDE  -->
-                                        <li data-transition="fade">
-                                            <!-- Background Image -->
-                                            <img src="assets/images/transparent.png" class="rev-slidebg" style="background-color: #eeebe7;" alt="Slider bg">
-
-                                            <div class="tp-caption tp-resizeme rs-parallaxlevel-0 text-primary"
-                                                data-x="['left','left','left','left']" data-hoffset="['68','50','45','30']"
-                                                data-y="['center','center','center','center']" data-voffset="['-44','-36','-30','-24']"
-                                                data-fontsize="['26','24','22','20']"
-                                                data-fontweight="400"
-                                                data-lineheight="['36','34','32','30']"
-                                                data-width="none"
-                                                data-height="none"
-                                                data-whitespace="nowrap"
-                                                data-frames='[{"delay":600,"speed":800,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":600,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                                                data-responsive_offset="on"
-                                                data-elementdelay="0"
-                                                style="z-index: 5; white-space: nowrap; letter-spacing: 0.08em; text-transform: uppercase; font-family:'Oswald', sans-serif;">
-                                                Vintage Style<br>Furnitures
-                                            </div>
-
-                                            <a class="tp-caption tp-resizeme rs-parallaxlevel-0"
-                                                data-x="['left','left','left','left']" data-hoffset="['68','50','45','30']"
-                                                data-y="['center','center','center','center']" data-voffset="['40','36','32','30']"
-                                                data-width="none"
-                                                data-height="none"
-                                                data-fontsize="['13','12','11','10']"
-                                                data-fontweight="400"
-                                                data-lineheight="['21','20','18','16']"
-                                                data-color="#7e6f5c"
-                                                data-whitespace="nowrap"
-                                                data-frames='[{"delay":1000,"speed":800,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":600,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                                                data-responsive_offset="on"
-                                                style="z-index: 7; letter-spacing: 0.075em; text-transform: uppercase; text-decoration: underline;" href="category.html">
-                                                Shop Now
-                                            </a>
-
-                                            <div class="tp-caption tp-resizeme"
-                                                data-frames='[{"delay":600,"speed":1000,"frame":"0","from":"x:right;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":600,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                                                data-type="image"
-                                                data-x="['right','right','right','right']" data-hoffset="['110','90','80','60']"
-                                                data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']"
-                                                data-width="none"
-                                                data-height="none"
-
-                                            ><img src="assets/images/slider/item1.png" alt="Item" width="452" height="428" data-ww="['452px', '380px', '300px', '240px']" data-hh="['428px', '359px', '331px', '227px']"></div>
-                                        </li>
-
-                                        <!-- SLIDE  -->
-                                        <li data-transition="fade">
-                                            <!-- Background Image -->
-                                            <img src="assets/images/transparent.png" class="rev-slidebg" style="background-color: #eeebe7;" alt="Slider bg">
-
-                                            <div class="tp-caption tp-resizeme rs-parallaxlevel-0 text-primary"
-                                                data-x="['left','left','left','left']" data-hoffset="['68','50','45','30']"
-                                                data-y="['center','center','center','center']" data-voffset="['-44','-36','-30','-24']"
-                                                data-fontsize="['26','24','22','20']"
-                                                data-fontweight="400"
-                                                data-lineheight="['36','34','32','30']"
-                                                data-width="none"
-                                                data-height="none"
-                                                data-whitespace="nowrap"
-                                                data-frames='[{"delay":600,"speed":800,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":600,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                                                data-responsive_offset="on"
-                                                data-elementdelay="0"
-                                                style="z-index: 5; white-space: nowrap; letter-spacing: 0.08em; text-transform: uppercase; font-family:'Oswald', sans-serif;">
-                                                Modern Style<br>Furnitures
-                                            </div>
-
-                                            <a class="tp-caption tp-resizeme rs-parallaxlevel-0"
-                                                data-x="['left','left','left','left']" data-hoffset="['68','50','45','30']"
-                                                data-y="['center','center','center','center']" data-voffset="['40','36','32','30']"
-                                                data-width="none"
-                                                data-height="none"
-                                                data-fontsize="['13','12','11','10']"
-                                                data-fontweight="400"
-                                                data-lineheight="['21','20','18','16']"
-                                                data-color="#7e6f5c"
-                                                data-whitespace="nowrap"
-                                                data-frames='[{"delay":1000,"speed":800,"frame":"0","from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;opacity:0;","mask":"x:0px;y:[100%];s:inherit;e:inherit;","to":"o:1;","ease":"Power2.easeInOut"},{"delay":"wait","speed":600,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                                                data-responsive_offset="on"
-                                                style="z-index: 7; letter-spacing: 0.075em; text-transform: uppercase; text-decoration: underline;" href="category.html">
-                                                Shop Now
-                                            </a>
-
-                                            <div class="tp-caption tp-resizeme"
-                                                data-frames='[{"delay":600,"speed":1000,"frame":"0","from":"x:right;","to":"o:1;","ease":"Power3.easeInOut"},{"delay":"wait","speed":600,"frame":"999","to":"auto:auto;","ease":"Power3.easeInOut"}]'
-                                                data-type="image"
-                                                data-x="['right','right','right','right']" data-hoffset="['140','120','100','80']"
-                                                data-y="['bottom','bottom','bottom','bottom']" data-voffset="['0','0','0','0']"
-                                                data-width="none"
-                                                data-height="none">
-                                                <img src="assets/images/slider/item2.png" alt="Item" width="365" height="454" data-ww="['365px', '300px', '240px', '200px']" data-hh="['454px', '373px', '298px', '248px']">
-                                            </div>
-                                        </li>
-                                    </ul>
-                                    <div class="tp-bannertimer tp-bottom" style="display:none; height: 2px; background-color: rgba(0, 0, 0, 0.2);"></div>
-                                </div><!-- End #rev_slider -->
-                            </div><!-- END REVOLUTION SLIDER -->
-
-                            <h3 class="carousel-title">Featured Product</h3>
-                            <div class="owl-data-carousel owl-carousel"
-                            data-owl-settings='{ "items":4, "nav": true, "dots":false }'
-                            data-owl-responsive='{ "480": {"items": 2}, "768": {"items": 3}, "992": {"items": 3}, "1200": {"items": 4} }'>
-                                <div class="product">
-                                    <figure class="product-image-container">
-                                        <a href="product.html" title="Product Name" class="product-image-link">
-                                            <img class="owl-lazy" src="assets/images/blank.png" data-src="assets/images/products/product5.jpg" width="195" height="255" alt="Product Image">
-                                        </a>
-                                        <span class="product-label">-55%</span>
-                                        <a href="#" class="btn-quick-view">Quick View</a>
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-wishlist" title="Add to Wishlist">
-                                                <i class="icon-product icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="btn-product btn-add-cart" title="Add to Bag">
-                                                <i class="icon-product icon-bag"></i>
-                                                <span>Add to Bag</span>
-                                            </a>
-                                            <a href="#" class="btn-product btn-compare" title="Add to Compare">
-                                                <i class="icon-product icon-bar"></i>
-                                            </a>
-                                        </div><!-- End .product-action -->
-                                    </figure>
-                                    <h3 class="product-title">
-                                        <a href="product.html">Chandelier bulb</a>
-                                    </h3>
-                                    <div class="product-price-container">
-                                        <span class="product-price">$250.00</span>
-                                    </div><!-- Endd .product-price-container -->
-                                </div><!-- End .product -->
-
-                                <div class="product">
-                                    <figure class="product-image-container">
-                                        <a href="product.html" title="Product Name" class="product-image-link">
-                                            <img class="owl-lazy" src="assets/images/blank.png" data-src="assets/images/products/product10.jpg" width="195" height="255" alt="Product Image">
-                                        </a>
-                                        <a href="#" class="btn-quick-view">Quick View</a>
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-wishlist" title="Add to Wishlist">
-                                                <i class="icon-product icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="btn-product btn-add-cart" title="Add to Bag">
-                                                <i class="icon-product icon-bag"></i>
-                                                <span>Add to Bag</span>
-                                            </a>
-                                            <a href="#" class="btn-product btn-compare" title="Add to Compare">
-                                                <i class="icon-product icon-bar"></i>
-                                            </a>
-                                        </div><!-- End .product-action -->
-                                    </figure>
-                                    <h3 class="product-title">
-                                        <a href="product.html">Dining chair</a>
-                                    </h3>
-                                    <div class="product-price-container">
-                                        <span class="product-price">$130.00</span>
-                                    </div><!-- Endd .product-price-container -->
-                                </div><!-- End .product -->
-
-                                <div class="product">
-                                    <figure class="product-image-container">
-                                        <a href="product.html" title="Product Name" class="product-image-link">
-                                            <img class="owl-lazy" src="assets/images/blank.png" data-src="assets/images/products/product11.jpg" width="195" height="255" alt="Product Image">
-                                        </a>
-                                        <a href="#" class="btn-quick-view">Quick View</a>
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-wishlist" title="Add to Wishlist">
-                                                <i class="icon-product icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="btn-product btn-add-cart" title="Add to Bag">
-                                                <i class="icon-product icon-bag"></i>
-                                                <span>Add to Bag</span>
-                                            </a>
-                                            <a href="#" class="btn-product btn-compare" title="Add to Compare">
-                                                <i class="icon-product icon-bar"></i>
-                                            </a>
-                                        </div><!-- End .product-action -->
-                                    </figure>
-                                    <h3 class="product-title">
-                                        <a href="product.html">Woolen scarf</a>
-                                    </h3>
-                                    <div class="product-price-container">
-                                        <span class="product-price">$95.00</span>
-                                    </div><!-- Endd .product-price-container -->
-                                </div><!-- End .product -->
-
-                                <div class="product">
-                                    <figure class="product-image-container">
-                                        <a href="product.html" title="Product Name" class="product-image-link">
-                                            <img class="owl-lazy" src="assets/images/blank.png" data-src="assets/images/products/product12.jpg" width="195" height="255" alt="Product Image">
-                                        </a>
-                                        <a href="#" class="btn-quick-view">Quick View</a>
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-wishlist" title="Add to Wishlist">
-                                                <i class="icon-product icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="btn-product btn-add-cart" title="Add to Bag">
-                                                <i class="icon-product icon-bag"></i>
-                                                <span>Add to Bag</span>
-                                            </a>
-                                            <a href="#" class="btn-product btn-compare" title="Add to Compare">
-                                                <i class="icon-product icon-bar"></i>
-                                            </a>
-                                        </div><!-- End .product-action -->
-                                    </figure>
-                                    <h3 class="product-title">
-                                        <a href="product.html">Tripod lampshade</a>
-                                    </h3>
-                                    <div class="product-price-container">
-                                        <span class="product-price">$180.00</span>
-                                    </div><!-- Endd .product-price-container -->
-                                </div><!-- End .product -->
-
-                               <div class="product">
-                                    <figure class="product-image-container">
-                                        <a href="product.html" title="Product Name" class="product-image-link">
-                                            <img class="owl-lazy" src="assets/images/blank.png" data-src="assets/images/products/product14.jpg" width="195" height="255" alt="Product Image">
-                                        </a>
-                                        <a href="#" class="btn-quick-view">Quick View</a>
-
-                                        <div class="product-action">
-                                            <a href="#" class="btn-product btn-wishlist" title="Add to Wishlist">
-                                                <i class="icon-product icon-heart"></i>
-                                            </a>
-                                            <a href="#" class="btn-product btn-add-cart" title="Add to Bag">
-                                                <i class="icon-product icon-bag"></i>
-                                                <span>Add to Bag</span>
-                                            </a>
-                                            <a href="#" class="btn-product btn-compare" title="Add to Compare">
-                                                <i class="icon-product icon-bar"></i>
-                                            </a>
-                                        </div><!-- End .product-action -->
-                                    </figure>
-                                    <h3 class="product-title">
-                                        <a href="product.html">Ceiling lights</a>
-                                    </h3>
-                                    <div class="product-price-container">
-                                        <span class="product-price">$140.00</span>
-                                    </div><!-- Endd .product-price-container -->
-                                </div><!-- End .product -->
-                            </div><!-- End .owl-data-carousel -->
-
-                            <div class="mb30 mb10-xs"></div><!-- margin -->
-
-                            <div class="banner banner-fullwidth">
-                                <div class="banner-content-wrapper">
-                                    <h3>Home &amp; Garden</h3>
-                                    <p>Starting at</p>
-                                    <div class="banner-price">$352.00<span>$452.00</span></div>
-                                    <a href="#">Shop Now</a>
-                                </div><!-- End .banner-content-wrapper -->
-                                <div class="banner-image-wrapper">
-                                    <a href="#"><img src="assets/images/banners/banner-full.jpg" alt="Banner"></a>
-                                </div><!-- End .banner-image-wrapper -->
-                            </div><!-- end .banner -->
-
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <h3 class="carousel-title">BEST SELLER</h3>
-                                    <ul class="products-list">
-                                        <li class="product">
-                                            <figure class="product-image-container">
-                                                <a href="product.html">
-                                                    <img src="assets/images/products/small/product1.jpg" alt="Product">
-                                                </a>
-                                            </figure>
-                                            <div>
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-                                                        <span class="ratings" style="width:0%"></span><!-- End .ratings -->
-                                                    </div><!-- End .product-ratings -->
-                                                </div><!-- End .ratings-container -->
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Leather belt</a>
-                                                </h4>
-                                                <div class="product-price-container">
-                                                    <span class="product-price">$85.00</span>
-                                                </div><!-- End .product-price-container -->
-                                            </div>
-                                        </li>
-
-                                        <li class="product">
-                                            <figure class="product-image-container">
-                                                <a href="product.html">
-                                                    <img src="assets/images/products/small/product2.jpg" alt="Product">
-                                                </a>
-                                            </figure>
-                                            <div>
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-                                                        <span class="ratings" style="width:40%"></span><!-- End .ratings -->
-                                                    </div><!-- End .product-ratings -->
-                                                </div><!-- End .ratings-container -->
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Sunglasses</a>
-                                                </h4>
-                                                <div class="product-price-container">
-                                                    <span class="product-price">$110.00</span>
-                                                </div><!-- End .product-price-container -->
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div><!-- End .col-sm-4 -->
-                                <div class="col-sm-4">
-                                    <h3 class="carousel-title">SALE</h3>
-
-                                    <ul class="products-list">
-                                        <li class="product">
-                                            <figure class="product-image-container">
-                                                <a href="product.html">
-                                                    <img src="assets/images/products/small/product3.jpg" alt="Product">
-                                                </a>
-                                            </figure>
-                                            <div>
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-                                                        <span class="ratings" style="width:0%"></span><!-- End .ratings -->
-                                                    </div><!-- End .product-ratings -->
-                                                </div><!-- End .ratings-container -->
-                                                <h4 class="product-title">
-                                                    <a href="product.html">T-shirts</a>
-                                                </h4>
-                                                <div class="product-price-container">
-                                                    <span class="product-price">$99.00</span>
-                                                </div><!-- End .product-price-container -->
-                                            </div>
-                                        </li>
-
-                                        <li class="product">
-                                            <figure class="product-image-container">
-                                                <a href="product.html">
-                                                    <img src="assets/images/products/small/product4.jpg" alt="Product">
-                                                </a>
-                                            </figure>
-                                            <div>
-                                                <div class="ratings-container">
-                                                    <div class="product-ratings">
-                                                        <span class="ratings" style="width:0%"></span><!-- End .ratings -->
-                                                    </div><!-- End .product-ratings -->
-                                                </div><!-- End .ratings-container -->
-                                                <h4 class="product-title">
-                                                    <a href="product.html">Chandelier bulb</a>
-                                                </h4>
-                                                <div class="product-price-container">
-                                                    <span class="product-price">$250.00</span>
-                                                </div><!-- End .product-price-container -->
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div><!-- End .col-sm-4 -->
-                                <div class="col-sm-4">
-                                    <h3 class="carousel-title">Most Wanted</h3>
-                                    <div class="owl-data-carousel owl-carousel"
-                                    data-owl-settings='{ "items":1, "margin": 5, "loop": false, "nav": true, "dots":false }'>
-                                        <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="assets/images/banners/wanted-banner.jpg" alt="Banner">
-                                            </a>
-
-                                            <div class="wanted-banner-content">
-                                                <h4>Off<span>58%</span></h4>
-                                            </div><!-- End .wanter-banner-content -->
-                                        </div><!-- End .banner -->
-                                        <div class="banner banner-image">
-                                            <a href="#">
-                                                <img src="assets/images/banners/wanted-banner-2.jpg" alt="Banner">
-                                            </a>
-                                            <div class="wanted-banner-content">
-                                                <h4>Off<span>42%</span></h4>
-                                            </div><!-- End .wanter-banner-content -->
-                                        </div><!-- End .banner -->
-                                    </div><!-- End .owl-data-carousel -->
-                                </div><!-- End .col-sm-4 -->
-                            </div><!-- End .row -->
-
-                            <div class="mb50 visible-sm visible-xs"></div><!-- margin -->
-                        </div><!-- End .col-md-9 -->
-                    </div><!-- End .row -->
-                </div><!-- End .container -->
+                @yield('content')
             </div><!-- End .main -->
         </div>
+
+        <footer class="footer">
+            <div class="container">
+                <div class="info-bar">
+                    <div class="info-bar-col">
+                        <h5 class="info-bar-title">FREE SHIPPING &amp; RETURN</h5>
+                        <p>Free shipping on all orders over $99</p>
+                    </div><!-- End .info-bar-col -->
+                    <div class="info-bar-col">
+                        <h5 class="info-bar-title">MONEY BACK GUARANTEE</h5>
+                        <p>100% money back guarantee</p>
+                    </div><!-- End .info-bar-col -->
+                    <div class="info-bar-col">
+                        <h5 class="info-bar-title">ONLINE SUPPORT 24/7</h5>
+                        <p>Highly customer satisfaction</p>
+                    </div><!-- End .info-bar-col -->
+                </div><!-- End .info-bar -->
+            </div><!-- End .container -->
+            <div class="footer-inner">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6 col-md-3">
+                            <div class="widget widget-about">
+                                <h4 class="widget-title">Contact Information</h4>
+
+                                <address>
+                                    <span>123 Shopo St</span>
+                                    <span>Commerce Land, EC 12345</span>
+                                    <span>+123 456 7890</span>
+                                    <a href="mailto:info@domain.com">info@domain.com</a>
+                                </address>
+                            </div><!-- End .widget -->
+                        </div><!-- End .col-md-3 -->
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="widget">
+                                <h4 class="widget-title">Collection</h4>
+
+                                <ul class="links">
+                                    <li><a href="#">Fashion</a></li>
+                                    <li><a href="#">Electronics</a></li>
+                                    <li><a href="#">Home &amp; Garden</a></li>
+                                    <li><a href="#">Music</a></li>
+                                    <li><a href="#">Sports</a></li>
+                                    <li><a href="#">Motors</a></li>
+                                </ul>
+                            </div><!-- End .widget -->
+                        </div><!-- End .col-md-3 -->
+
+                        <div class="clearfix visible-sm"></div><!-- clearfix -->
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="widget">
+                                <h4 class="widget-title">My Account</h4>
+
+                                <ul class="links">
+                                    <li><a href="#">Account</a></li>
+                                    <li><a href="#">Login</a></li>
+                                    <li><a href="#">My cart</a></li>
+                                    <li><a href="#">Wishlist</a></li>
+                                    <li><a href="#">Checkout</a></li>
+                                </ul>
+                            </div><!-- End .widget -->
+                        </div><!-- End .col-md-3 -->
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="widget widget-newsletter">
+                                <h4 class="widget-title">Newsletter</h4>
+                                <p>Signup for our newsletter</p>
+
+                                <form action="#">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="Your Email" required>
+                                        <input type="submit" value="GO" class="btn">
+                                    </div><!-- End .form-group -->
+                                </form>
+
+                                <div class="social-icons">
+                                    <a href="#" class="social-icon" title="Facebook"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" class="social-icon" title="Twitter"><i class="fa fa-twitter"></i></a>
+                                    <a href="#" class="social-icon" title="Linkedin"><i class="fa fa-linkedin"></i></a>
+                                </div>
+                            </div><!-- End .widget -->
+                        </div><!-- End .col-md-3 -->
+                    </div><!-- End .row -->
+                </div><!-- End .container -->
+            </div><!-- End .footer-inner -->
+
+            <div class="footer-bottom">
+                <div class="container">
+                    <p class="copyright">Storo Fashion &copy; {{date('Y')}}. Todo os direitos reservados.</p>
+                <img src="{{asset('site/images/cards.png')}}" alt="Payment Methods" class="img-cards">
+                </div><!-- End .container -->
+            </div><!-- End .footer-bottom -->
+        </footer><!-- End .footer -->
+    </div><!-- End #wrapper -->
+
+    <a id="scroll-top" href="#top" title="Scroll top"><i class="fa fa-angle-up"></i></a>
+
+    <!-- End -->
+    <script src="{{ asset('site/js/plugins.js') }}"></script>
+    <script src="{{ asset('site/js/main.js') }}"></script>
+
+    <!-- REVOLUTION JS FILES -->
+    <script type="text/javascript" src="{{ asset('site/js/jquery.themepunch.tools.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/jquery.themepunch.revolution.min.js') }}"></script>
+
+    <!-- SLIDER REVOLUTION 5.0 EXTENSIONS
+    (Load Extensions only on Local File Systems !
+    The following part can be removed on Server for On Demand Loading) -->
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.actions.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.carousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.kenburn.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.migration.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.navigation.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.parallax.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.slideanims.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('site/js/extensions/revolution.extension.video.min.js') }}"></script>
+
+    <script type="text/javascript">
+        jQuery(document).ready(function() {
+            "use strict";
+
+            var revapi;
+            if ( $("#rev_slider").revolution == undefined ) {
+                revslider_showDoubleJqueryError("#rev_slider");
+            } else {
+                revapi = $("#rev_slider").show().revolution({
+                    sliderType: "standard",
+                    jsFileLocation: "assets/js/",
+                    sliderLayout: "auto",
+                    dottedOverlay:"none",
+                    delay: 15000,
+                    navigation: {
+                        mouseScrollNavigation: "off",
+                        onHoverStop: "off",
+                        touch: {
+                            touchenabled: "on"
+                        },
+                        arrows: {
+                            style: "custom",
+                            enable: true,
+                            hide_onmobile: false,
+                            hide_under: 768,
+                            hide_onleave: false,
+                            tmp: '',
+                            left: {
+                                h_align: "left",
+                                v_align: "bottom",
+                                h_offset: 63,
+                                v_offset: 48
+                            },
+                            right: {
+                                h_align: "left",
+                                v_align: "bottom",
+                                h_offset: 85,
+                                v_offset: 48
+                            }
+                        },
+                        bullets: {
+                            enable: false
+                        }
+                    },
+                    responsiveLevels: [1200,992,768,480],
+                    gridwidth: [870,679,640,480],
+                    gridheight: [468,400,360,300],
+                    lazyType: "smart",
+                    spinner: "spinner2",
+                    parallax: {
+                        type: "off"
+                    },
+                    debugMode: false
+                });
+            }
+        });
+    </script>
     </body>
 </html>
