@@ -15,6 +15,12 @@ class CreateCredCardsTable extends Migration
     {
         Schema::create('cred_cards', function (Blueprint $table) {
             $table->id();
+            $table->string('number_card');
+            $table->date('due_date');
+            $table->char('flag',1);
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
     }

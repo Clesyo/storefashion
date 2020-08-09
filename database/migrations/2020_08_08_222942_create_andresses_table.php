@@ -15,6 +15,16 @@ class CreateAndressesTable extends Migration
     {
         Schema::create('andresses', function (Blueprint $table) {
             $table->id();
+            $table->string('cep');
+            $table->string('andress');
+            $table->integer('number');
+            $table->string('complement')->nullable();
+            $table->string('neighborhood');
+            $table->string('city');
+            $table->string('state');
+            $table->boolean('main')->nullable();
+            $table->unsignedBigInteger('client_id');
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }
