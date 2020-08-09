@@ -22,7 +22,7 @@ class CreateClientsTable extends Migration
             $table->string('email')->unique();
             $table->string('telephone');
             $table->string('cell_phone');
-            $table->string('email');
+            $table->string('image_profile')->nullable();
             $table->timestamps();
         });
     }
