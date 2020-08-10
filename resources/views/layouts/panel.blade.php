@@ -10,6 +10,11 @@
     <meta name="description" content="Store Fashion - Sua loja virtual">
     <!-- Google Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7COswald:300,400,500,600,700" rel="stylesheet">
+
+    <link href="{{ asset('panel/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- dropzone css -->
+    <link href="{{asset('panel/libs/dropzone/min/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Bootstrap Css -->
     <link href="{{asset('panel/css/bootstrap.min.css')}}"  rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -361,22 +366,48 @@
                             </ul>
                         </li>
 
-                        <li class="menu-title">Apps</li>
+                        <li class="menu-title">Loja Virtual</li>
 
                         <li>
-                            <a href="calendar.html" class=" waves-effect">
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
                                 <i class="bx bx-calendar"></i>
-                                <span>Calendar</span>
+                                <span>Pedidos</span>
                             </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="layouts-horizontal.html">Realizados</a></li>
+                                <li><a href="layouts-horizontal.html">Pendentes</a></li>
+                                <li><a href="layouts-horizontal.html">Cancelados</a></li>
+                            </ul>
+                        </li>
+                        {{-- <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="bx bx-calendar"></i>
+                                <span>Produtos</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ url('produtos', []) }}">Novo produto</a></li>
+                                <li><a href="layouts-horizontal.html">Montar vitrine</a></li>
+                            </ul>
+                        </li> --}}
+                        <li>
+                            <a href="{{ url('produtos', []) }}" class=" waves-effect">
+                                <i class="bx bx-chat"></i>
+                                <span>Produtos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow waves-effect">
+                                <i class="bx bx-calendar"></i>
+                                <span>Cadastro</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="layouts-horizontal.html">Cores</a></li>
+                                <li><a href="layouts-horizontal.html">Marcas</a></li>
+                                <li><a href="layouts-horizontal.html">Categorias</a></li>
+                            </ul>
                         </li>
 
-                        <li>
-                            <a href="chat.html" class=" waves-effect">
-                                <i class="bx bx-chat"></i>
-                                <span class="badge badge-pill badge-success float-right">New</span>
-                                <span>Chat</span>
-                            </a>
-                        </li>
+
 
                     </ul>
                 </div>
@@ -393,13 +424,6 @@
                     <div class="container-fluid">
 
                         @yield('content')
-
-
-
-
-
-
-
 
                     </div>
                     <!-- container-fluid -->
@@ -432,14 +456,36 @@
                 <a href="javascript:void(0);" class="right-bar-toggle float-right">
                     <i class="mdi mdi-close noti-icon"></i>
                 </a>
-                <h5 class="m-0">Settings</h5>
+                <h5 class="m-0">Configurações</h5>
             </div>
 
             <!-- Settings -->
             <hr class="mt-0" />
-            <h6 class="text-center mb-0">Choose Layouts</h6>
+            {{-- <h6 class="text-center mb-0">Choose Layouts</h6> --}}
 
             <div class="p-4">
+                <ul class="metismenu list-unstyled" id="side-menu">
+                    <li class="menu-title">Gerenciamento de acessos</li>
+                    <li>
+                        <a href="calendar.html" class=" waves-effect">
+                            <i class="bx bx-paperclip"></i>
+                            <span>Funções</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="calendar.html" class=" waves-effect">
+                            <i class="bx bx-shield-alt-2"></i>
+                            <span>Permissões</span>
+                        </a>
+                    </li>
+                    <li class="menu-title">Controle de Usuários</li>
+                    <li>
+                        <a href="calendar.html" class=" waves-effect">
+                            <i class="bx bx-user"></i>
+                            <span>Usuários</span>
+                        </a>
+                    </li>
+                </ul>
                 {{-- <div class="mb-2">
                     <img src="{{asset('panel/images/layouts/layout-1.jpg')}}" class="img-fluid img-thumbnail" alt="">
                 </div>
@@ -485,6 +531,18 @@
     <script src="{{ asset('panel/libs/apexcharts/apexcharts.min.js')}}"></script>
 
     <script src="{{ asset('panel/js/pages/dashboard.init.js')}}"></script>
+
+    <!-- bs custom file input plugin -->
+    <script src="{{asset('panel/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
+    <script src="{{asset('panel/libs/select2/js/select2.min.js')}}"></script>
+    <!-- form advanced init -->
+    <script src="{{asset('panel/js/pages/form-advanced.init.js')}}"></script>
+
+    <script src="{{asset('panel/js/pages/form-element.init.js')}}"></script>
+
+    <!-- dropzone plugin -->
+    <script src="{{asset('panel/libs/dropzone/min/dropzone.min.js')}}"></script>
 
     <!-- App js -->
     <script src="{{ asset('panel/js/app.js')}}"></script>

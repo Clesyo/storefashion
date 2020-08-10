@@ -19,14 +19,17 @@ class CreateProductsTable extends Migration
             $table->float('price', 8, 2);
             $table->float('price_promotion', 8, 2);
             $table->boolean('promotion')->default(0);
-            $table->unsignedBigInteger('brand_id');
+            $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->unsignedBigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->unsignedBigInteger('subcategory_id');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
             $table->unsignedBigInteger('unit_measure_id');
             $table->foreign('unit_measure_id')->references('id')->on('unit_measures')->onDelete('cascade');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->boolean('launch')->default(0);
+            $table->boolean('showcase')->default(0);
+            $table->boolean('status')->default(1);
             $table->timestamps();
         });
 
