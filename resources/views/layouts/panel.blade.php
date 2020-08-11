@@ -12,9 +12,11 @@
     <link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7COswald:300,400,500,600,700" rel="stylesheet">
 
     <link href="{{ asset('panel/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+    <!-- Bootstrap Select CSS -->
+		<link rel="stylesheet" href="{{asset('panel/libs/bs-select/bs-select.css')}}" />
+    <!-- Summernote css -->
+    <link href="{{ asset('panel/libs/summernote/summernote-bs4.min.css')}}" rel="stylesheet" type="text/css" />
 
-    <!-- dropzone css -->
-    <link href="{{asset('panel/libs/dropzone/min/dropzone.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Bootstrap Css -->
     <link href="{{asset('panel/css/bootstrap.min.css')}}"  rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
@@ -528,24 +530,34 @@
     <script src="{{ asset('panel/libs/node-waves/waves.min.js')}}"></script>
 
     <!-- apexcharts -->
-    <script src="{{ asset('panel/libs/apexcharts/apexcharts.min.js')}}"></script>
+    {{-- <script src="{{ asset('panel/libs/apexcharts/apexcharts.min.js')}}"></script> --}}
 
-    <script src="{{ asset('panel/js/pages/dashboard.init.js')}}"></script>
+    {{-- <script src="{{ asset('panel/js/pages/dashboard.init.js')}}"></script> --}}
 
     <!-- bs custom file input plugin -->
     <script src="{{asset('panel/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
     <script src="{{asset('panel/libs/select2/js/select2.min.js')}}"></script>
+    <!-- Bootstrap Select JS -->
+	<script src="{{asset('panel/libs/bs-select/bs-select.min.js')}}"></script>
+
     <!-- form advanced init -->
     <script src="{{asset('panel/js/pages/form-advanced.init.js')}}"></script>
 
     <script src="{{asset('panel/js/pages/form-element.init.js')}}"></script>
 
-    <!-- dropzone plugin -->
-    <script src="{{asset('panel/libs/dropzone/min/dropzone.min.js')}}"></script>
+
+   <!-- Summernote js -->
+   <script src="{{asset('panel/libs/summernote/summernote-bs4.min.js')}}"></script>
+
+   <!-- init js -->
+   <script src="{{asset('panel/js/pages/form-editor.init.js')}}"></script>
+
 
     <!-- App js -->
     <script src="{{ asset('panel/js/app.js')}}"></script>
+
+    @yield('scripts')
 
 </body>
 </html>

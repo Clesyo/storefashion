@@ -41,7 +41,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck-status" checked>
+                                    <input type="checkbox" class="custom-control-input" id="customCheck-status" checked id="status" value="1">
                                     <label class="custom-control-label" for="customCheck-status">Disponivel</label>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck-showcase">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck-showcase" id="showcase" value="1">
                                     <label class="custom-control-label" for="customCheck-showcase">Mostrar na Vitrine</label>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck-launch">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck-launch" id="launch" value="1">
                                     <label class="custom-control-label" for="customCheck-launch">Lançamento</label>
                                 </div>
                             </div>
@@ -71,7 +71,7 @@
                         <div class="col-sm-5">
                             <div class="form-group">
                                 <label class="control-label">Categoria*</label>
-                                <select class="form-control select2">
+                                <select class="form-control select2" id="category_id">
                                     <option>Select</option>
                                     <option value="AK">Alaska</option>
                                     <option value="HI">Hawaii</option>
@@ -88,8 +88,8 @@
                     <div class="row">
                         <div class="col-sm-12">
                             <div class="form-group">
-                                <label for="productname">Nome do Produto*</label>
-                                <input id="productname" name="productname" type="text" class="form-control">
+                                <label for="description">Nome do Produto*</label>
+                                <input id="description" name="description" type="text" class="form-control">
                             </div>
                         </div>
                     </div>
@@ -98,10 +98,10 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-3 mx-1">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck-promotion">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck-promotion" name="promotion">
                                     <label class="custom-control-label" for="customCheck-promotion">Preço promocional</label>
                                 </div>
-                                <input id="price" name="price" type="text" class="form-control" disabled>
+                                <input id="price_promotion" name="price" type="text" class="form-control" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="price">Preço* </label>
@@ -112,10 +112,16 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="manufacturername">Marca*</label>
-                                <select class="form-control select2">
-                                    <option>Select</option>
-                                    <option value="AK">Alaska</option>
-                                    <option value="HI">Hawaii</option>
+                                <select class="form-control select2" name="brand_id">
+                                    <option>United States</option>
+                                    <option data-subtext="India">India</option>
+                                    <option data-subtext="Brazil">Brazil</option>
+                                    <option data-subtext="Turkey" >Turkey</option>
+                                    <option data-subtext="United Kingdom">United Kingdom</option>
+                                    <option data-subtext="Mexico">Mexico</option>
+                                    <option data-subtext="Germany">Germany</option>
+                                    <option data-subtext="France">France</option>
+                                    <option data-subtext="Thailand">Thailand</option>
                                 </select>
                             </div>
                         </div>
@@ -123,15 +129,14 @@
 
                     <div class="row">
                         <div class="col-sm-6">
-
                         </div>
                     </div>
 
-                    <div class="text-right">
+                    {{-- <div class="text-right">
 
                         <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save Changes</button>
                         <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
-                    </div>
+                    </div> --}}
                 </form>
 
             </div>
@@ -139,59 +144,94 @@
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-3">Product Images</h4>
-
-                <form action="/" method="post" class="dropzone">
-                    <div class="fallback">
-                        <input name="file" type="file" multiple />
-                    </div>
-
-                    <div class="dz-message needsclick">
-                        <div class="mb-3">
-                            <i class="display-4 text-muted bx bxs-cloud-upload"></i>
-                        </div>
-
-                        <h4>Drop files here or click to upload.</h4>
-                    </div>
-                </form>
+                <h4 class="card-title">Inseir imagem</h4>
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="customFile" name="image">
+                    <label class="custom-file-label" for="customFile">
+                        Escolher arquivo</label>
+                </div>
             </div>
-
-        </div> <!-- end card-->
+        </div>
 
         <div class="card">
             <div class="card-body">
 
-                <h4 class="card-title">Meta Data</h4>
-                <p class="card-title-desc">Fill all information below</p>
+                <h4 class="card-title">Estoque</h4>
 
-                <form>
+
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="metatitle">Meta title</label>
-                                <input id="metatitle" name="productname" type="text" class="form-control">
+                                <label for="available">Disponivel</label>
+                                <input id="available" name="available" type="number" class="form-control">
                             </div>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="metakeywords">Meta Keywords</label>
-                                <input id="metakeywords" name="manufacturername" type="text" class="form-control">
+                                <label for="accounting">Contábil</label>
+                                <input id="accounting" disabled name="accounting" value="0" type="number" class="form-control">
                             </div>
                         </div>
 
-                        <div class="col-sm-6">
+                        <div class="col-sm-4">
                             <div class="form-group">
-                                <label for="metadescription">Meta Description</label>
-                                <textarea class="form-control" id="metadescription" rows="5"></textarea>
+                                <label for="allocated">Alocados (pedido)</label>
+                                <input type="number" disabled class="form-control" id="allocaed" value="0" name="allocated">
                             </div>
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save Changes</button>
-                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
+
 
                 </form>
 
             </div>
         </div> <!-- end card-->
+
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-3">Descrição do produto</h4>
+
+                <div class="row">
+                    <div class="col-ms-4">
+                        <div class="form-group">
+                            <label for="">Tamanho</label>
+                            <input type="text" class="form-control" name="size">
+                        </div>
+                    </div>
+                    <div class="col-ms-4">
+                        <div class="form-group">
+                            <label for="">Material</label>
+                            <input type="text" class="form-control" name="material">
+                        </div>
+                    </div>
+                    <div class="col-ms-4">
+                        <div class="form-group">
+                            <label for="">Cor</label>
+                            <input type="text" class="form-control" name="color_id" >
+                        </div>
+                    </div>
+                </div>
+                <div class="summernote "></div>
+
+                <div class="text-right my-4">
+
+                    <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Gravar</button>
+                    <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            </div> <!-- end col -->
+        </div> <!-- end row -->
+
     </div>
 </div>
+@endsection
+
+@section('scripts')
+    <script>
+
+    </script>
 @endsection
