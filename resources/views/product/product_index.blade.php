@@ -1,5 +1,9 @@
 @extends('layouts.panel')
 
+@section('title')
+<title>{{ $title.end($pages) }}</title>
+@endsection
+
 @section('content')
 <!-- start page title -->
 <div class="row">

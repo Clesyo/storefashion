@@ -1,5 +1,9 @@
 @extends('layouts.panel')
 
+@section('title')
+<title>{{ $title.end($pages) }}</title>
+@endsection
+
 @section('content')
 <!-- start page title -->
 <div class="row">
@@ -98,7 +102,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-3 mx-1">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck-promotion" name="promotion">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck-promotion" value="1" name="promotion">
                                     <label class="custom-control-label" for="customCheck-promotion">Preço promocional</label>
                                 </div>
                                 <input id="price_promotion" name="price" type="text" class="form-control" disabled>
@@ -112,6 +116,20 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="manufacturername">Marca*</label>
+                                <select class="form-control select2" name="brand_id">
+                                    <option>United States</option>
+                                    <option data-subtext="India">India</option>
+                                    <option data-subtext="Brazil">Brazil</option>
+                                    <option data-subtext="Turkey" >Turkey</option>
+                                    <option data-subtext="United Kingdom">United Kingdom</option>
+                                    <option data-subtext="Mexico">Mexico</option>
+                                    <option data-subtext="Germany">Germany</option>
+                                    <option data-subtext="France">France</option>
+                                    <option data-subtext="Thailand">Thailand</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="manufacturername">Unid. Medida</label>
                                 <select class="form-control select2" name="brand_id">
                                     <option>United States</option>
                                     <option data-subtext="India">India</option>
@@ -190,22 +208,22 @@
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-3">Descrição do produto</h4>
+                <h4 class="card-title mb-3">Caracteristicas do produto</h4>
 
                 <div class="row">
-                    <div class="col-ms-4">
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label for="">Tamanho</label>
                             <input type="text" class="form-control" name="size">
                         </div>
                     </div>
-                    <div class="col-ms-4">
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label for="">Material</label>
                             <input type="text" class="form-control" name="material">
                         </div>
                     </div>
-                    <div class="col-ms-4">
+                    <div class="col-sm-4">
                         <div class="form-group">
                             <label for="">Cor</label>
                             <input type="text" class="form-control" name="color_id" >

@@ -6,7 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Store Fashion - Sua loja virtual</title>
+
+
+    @yield('title')
     <meta name="description" content="Store Fashion - Sua loja virtual">
     <!-- Google Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7COswald:300,400,500,600,700" rel="stylesheet">
@@ -403,9 +405,10 @@
                                 <span>Cadastro</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="{{ url('categorias', []) }}">Categorias</a></li>
                                 <li><a href="layouts-horizontal.html">Cores</a></li>
                                 <li><a href="layouts-horizontal.html">Marcas</a></li>
-                                <li><a href="layouts-horizontal.html">Categorias</a></li>
+                                <li><a href="layouts-horizontal.html">Unidade de medida</a></li>
                             </ul>
                         </li>
 
