@@ -44,49 +44,37 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Nova categoria</h5>
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Nova cor</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-category">
+                    <form action="" method="post" id="form-submit">
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="">Nome</label>
+                                    <label for="">Cor*</label>
                                     <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="">Subcategoria</label>
-                                    <select class="form-control select2" name="parent" id="category_id" style="width: 100%">
-                                        <option>Select</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="HI">Hawaii</option>
-                                    </select>
+                                    <label for="">Selecione a cor</label>
+                                    <div class="input-group colorpicker-default" title="Use o marcador">
+                                        <input type="text" class="form-control input-lg" name="code_color" value="#ffffff"/>
+                                        <span class="input-group-append">
+                                            <span class="input-group-text colorpicker-input-addon"><i></i></span>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </form>
-                    <div class="row mt-4">
-                        <div class="col-md-12">
-                            <ul class="list-unstyled mb-0">
-                                <li>Instruções para criação de categorias e subcategorias:
-                                    <ul>
-                                        <li>Para criar uma categoria, preencha somente o campo 'Categorias'</li>
-                                        <li>Para criar uma subcategoria, preencha o campo 'Categoria' e selecione a categoria pai.</li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary waves-effect waves-light"
-                    onclick="event.preventDefault(); document.getElementById('form-category').submit();">Gravar</button>
+                    onclick="event.preventDefault(); document.getElementById('form-submit').submit();">Gravar</button>
                     <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Fechar</button>
                 </div>
             </div><!-- /.modal-content -->
@@ -98,61 +86,21 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title mb-4">Lista de categorias</h4>
-
-                <!-- Nav tabs -->
-                <ul class="nav nav-tabs" role="tablist">
-                    <li class="nav-item">
-                        <a class="nav-link active" data-toggle="tab" href="#category" role="tab">
-                            <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
-                            <span class="d-none d-sm-block">Categorias</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" data-toggle="tab" href="#subcategory" role="tab">
-                            <span class="d-block d-sm-none"><i class="far fa-user"></i></span>
-                            <span class="d-none d-sm-block">Subcategoria</span>
-                        </a>
-                    </li>
-
-                </ul>
-
-                <!-- Tab panes -->
-                <div class="tab-content p-3 text-muted">
-                    <div class="tab-pane active" id="category" role="tabpanel">
-                        <div class="table-responsive">
-                            <table class="table table-centered table-nowrap mb-0">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Categoria</th>
-                                        <th>Ação</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <div class="tab-pane" id="subcategory" role="tabpanel">
-                        <div class="table-responsive">
-                            <table class="table table-centered table-nowrap mb-0">
-                                <thead class="thead-light">
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Categoria</th>
-                                        <th>Categoria(Pai)</th>
-                                        <th>Ação</th>
-                                    </tr>
-                                </thead>
-                                <tbody></tbody>
-                            </table>
-                        </div>
-                    </div>
-
-
+                <h4 class="card-title mb-4">Lista de cores</h4>
+                <div class="table-responsive">
+                    <table class="table table-centered table-nowrap mb-0">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>#</th>
+                                <th>Cor</th>
+                                <th>Codigo da cor</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
                 </div>
-
-            </div> <!-- end car-body-->
+            </div>
         </div>
     </div>
 </div>

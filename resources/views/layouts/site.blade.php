@@ -188,8 +188,8 @@
                                 <li><a href="single.html">blog Post</a></li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact Us</a></li>
-                        <li><a href="#">Buy Shopo!</a></li>
+                        <li><a href="{{ route('login') }}">Área Restrita</a></li>
+
                     </ul>
                 </div><!-- End .sidemenu-wrapper -->
             </aside><!-- End .sidemenu -->
@@ -329,7 +329,7 @@
             } else {
                 revapi = $("#rev_slider").show().revolution({
                     sliderType: "standard",
-                    jsFileLocation: "assets/js/",
+                    jsFileLocation: "{{url('site/js/')}}",
                     sliderLayout: "auto",
                     dottedOverlay:"none",
                     delay: 15000,

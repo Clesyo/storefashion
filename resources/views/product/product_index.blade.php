@@ -1,7 +1,7 @@
 @extends('layouts.panel')
 
 @section('title')
-<title>{{ $title.end($pages) }}</title>
+{{ $title.end($pages) }}
 @endsection
 
 @section('content')
@@ -33,9 +33,10 @@
     </div>
 </div>
 <!-- end page title -->
-<div class="row">
-    <div class="col-lg-12">
-
+<div class="row justify-content-between">
+    <div class="col-sm-4 col-3"></div>
+    <div class="col-sm-3 col-9 text-right mb-2 px-3">
+        <a href="{{ url('produto/novo', []) }}" class="btn btn-primary btn-rounded" style="font-weight: bold"><i class="bx bx-plus-circle font-size-16 align-middle mr-2"></i>  Novo</a>
     </div>
 </div>
 

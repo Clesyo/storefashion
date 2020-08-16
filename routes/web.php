@@ -21,7 +21,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('perfil', 'CompanyController@index');
+Route::post('company/store', 'CompanyController@store');
+
 Route::get('categorias', 'CategoryController@index');
+
+Route::get('cores', 'ColorController@index');
+
+Route::get('marcas', 'BrandController@index');
+
+
 
 Route::get('produtos', 'ProductController@index');
 Route::get('produto/novo', 'ProductController@create');

@@ -7,17 +7,19 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-
-    @yield('title')
+    <title>  @yield('title')   </title>
     <meta name="description" content="Store Fashion - Sua loja virtual">
     <!-- Google Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7COswald:300,400,500,600,700" rel="stylesheet">
 
     <link href="{{ asset('panel/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('panel/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet" type="text/css">
     <!-- Bootstrap Select CSS -->
-		<link rel="stylesheet" href="{{asset('panel/libs/bs-select/bs-select.css')}}" />
+	<link rel="stylesheet" href="{{asset('panel/libs/bs-select/bs-select.css')}}" />
     <!-- Summernote css -->
     <link href="{{ asset('panel/libs/summernote/summernote-bs4.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" type="text/css" href="{{ asset('panel/libs/toastr/build/toastr.min.css')}}">
 
     <!-- Bootstrap Css -->
     <link href="{{asset('panel/css/bootstrap.min.css')}}"  rel="stylesheet" type="text/css" />
@@ -25,6 +27,7 @@
     <link href="{{ asset('panel/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- App Css-->
     <link href="{{ asset('panel/css/app.min.css')}}"  rel="stylesheet" type="text/css" />
+    <script src="{{ asset('panel/libs/jquery/jquery.min.js')}}"></script>
 </head>
 <body data-sidebar="dark">
 
@@ -311,7 +314,7 @@
                         </button>
                         <div class="dropdown-menu dropdown-menu-right">
                             <!-- item-->
-                            <a class="dropdown-item" href="#"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Profile</a>
+                            <a class="dropdown-item" href="{{ url('perfil', []) }}"><i class="bx bx-user font-size-16 align-middle mr-1"></i> Perfil</a>
                             <a class="dropdown-item" href="#"><i class="bx bx-wallet font-size-16 align-middle mr-1"></i> My Wallet</a>
                             <a class="dropdown-item d-block" href="#"><span class="badge badge-success float-right">11</span><i class="bx bx-wrench font-size-16 align-middle mr-1"></i> Settings</a>
                             <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a>
@@ -406,9 +409,8 @@
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
                                 <li><a href="{{ url('categorias', []) }}">Categorias</a></li>
-                                <li><a href="layouts-horizontal.html">Cores</a></li>
-                                <li><a href="layouts-horizontal.html">Marcas</a></li>
-                                <li><a href="layouts-horizontal.html">Unidade de medida</a></li>
+                                <li><a href="{{ url('cores', []) }}">Cores</a></li>
+                                <li><a href="{{ url('marcas', []) }}">Marcas</a></li>
                             </ul>
                         </li>
 
@@ -532,6 +534,8 @@
     <script src="{{ asset('panel/libs/simplebar/simplebar.min.js')}}"></script>
     <script src="{{ asset('panel/libs/node-waves/waves.min.js')}}"></script>
 
+    <script src="{{ asset('panel/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+
     <!-- apexcharts -->
     {{-- <script src="{{ asset('panel/libs/apexcharts/apexcharts.min.js')}}"></script> --}}
 
@@ -547,14 +551,20 @@
     <!-- form advanced init -->
     <script src="{{asset('panel/js/pages/form-advanced.init.js')}}"></script>
 
-    <script src="{{asset('panel/js/pages/form-element.init.js')}}"></script>
+    <script src="{{ asset('panel/js/pages/form-element.init.js')}}"></script>
 
 
    <!-- Summernote js -->
-   <script src="{{asset('panel/libs/summernote/summernote-bs4.min.js')}}"></script>
+   <script src="{{ asset('panel/libs/summernote/summernote-bs4.min.js')}}"></script>
 
    <!-- init js -->
-   <script src="{{asset('panel/js/pages/form-editor.init.js')}}"></script>
+   <script src="{{ asset('panel/js/pages/form-editor.init.js')}}"></script>
+
+   <!-- toastr plugin -->
+   <script src="{{ asset('panel/libs/toastr/build/toastr.min.js')}}"></script>
+
+   <!-- toastr init -->
+   <script src="{{ asset('panel/js/pages/toastr.init.js')}}"></script>
 
 
     <!-- App js -->
