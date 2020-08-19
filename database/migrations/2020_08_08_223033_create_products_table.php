@@ -21,12 +21,9 @@ class CreateProductsTable extends Migration
             $table->boolean('promotion')->default(0);
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
-            $table->unsignedBigInteger('subcategory_id');
-            $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
-            $table->unsignedBigInteger('unit_measure_id');
-            $table->foreign('unit_measure_id')->references('id')->on('unit_measures')->onDelete('cascade');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->boolean('available')->default(0);
             $table->boolean('launch')->default(0);
             $table->boolean('showcase')->default(0);
             $table->boolean('status')->default(1);
@@ -49,6 +46,7 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('image_products');
         Schema::dropIfExists('products');
     }
 }

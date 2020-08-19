@@ -23,7 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $title = 'Store Fashion | Painel - ';
         $pages = ['Dashboard'];
-        return view('home', compact('pages'));
+        return view('home', compact('pages', 'title'));
     }
 }

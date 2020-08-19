@@ -8,4 +8,6 @@ class ImageProduct extends Model
 {
     //
     protected $table = 'image_products';
+
+    protected $fillable = ['path','product_id'];
 }

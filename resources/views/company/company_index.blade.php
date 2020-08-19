@@ -133,7 +133,7 @@
                         <div class="col-md-1">
                             <div class="form-group">
                                 <label for="">UF</label>
-                                <input type="text" name="uf" class="form-control">
+                                <input type="text" name="state" class="form-control">
                             </div>
                         </div>
                     </div>
