@@ -50,7 +50,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-submit">
+                    <form action="{{ url('marcas/store', []) }}" method="post" id="form-submit" enctype="multipart/form-data">
+                        @csrf
                         <div class="row">
                             <div class="col-sm-11">
                                 <div class="form-group">
@@ -60,8 +61,8 @@
                             </div>
                             <div class="col-sm-1">
                                 <div class="form-group">
-                                    <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mt-4 text-right">
-                                        <input type="checkbox" name="status" class="custom-control-input" id="customCheck-outlinecolor1" checked>
+                                    <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mt-4 mr-2">
+                                        <input type="checkbox" value="1" name="status" class="custom-control-input" id="customCheck-outlinecolor1" checked>
                                         <label class="custom-control-label" for="customCheck-outlinecolor1">Ativo</label>
                                     </div>
                                 </div>
@@ -76,13 +77,13 @@
                                 </div>
                             </div>
                         </div>
-                        <input type="hidden" name="company_id" value="{{ Auth::user()->id }}">
+                        <input type="hidden" name="company_id" value="{{ $company->id }}">
                     </form>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Fechar</button>
                     <button type="button" class="btn btn-primary waves-effect waves-light"
                     onclick="event.preventDefault(); document.getElementById('form-submit').submit();">Gravar</button>
-                    <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Fechar</button>
                 </div>
             </div><!-- /.modal-content -->
         </div><!-- /.modal-dialog -->
@@ -106,13 +107,27 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                            </tr>
+                            @foreach ($brands as $brand)
+                                <tr>
+                                    <td>{{ $brand->id }}</td>
+                                    <td>{{ $brand->name }}</td>
+                                    <td>
+                                        @if ($brand->logo != null)
+                                            <img src="{{ asset('storage/'.$brand->logo) }}" alt="" class="rounded avatar-sm">
+                                        @else
+                                            <img src="{{ asset('panel/images/sem-foto.jpg') }}" alt="" class="rounded avatar-sm">
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if ($brand->status == 1)
+                                            <span class="badge badge-pill badge-success">{{ __('Ativo') }}</span>
+                                        @else
+                                            <span class="badge badge-pill badge-error">{{ __('Inativo') }}</span>
+                                        @endif
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -125,9 +140,9 @@
 @section('scripts')
 @if(Session::has('message'))
     <script>
-        var message = "Session::get('message')";
-        var title = "Session::get('title')";
-        var alert_type = "Session::get('alert_type')";
+        var message = "{{Session::get('message')}}";
+        var title = "{{Session::get('title')}}";
+        var alert_type = "{{Session::get('alert_type')}}";
 
         toastr.options = {
             "closeButton": false,
@@ -148,16 +163,16 @@
         }
 
         switch (alert_type) {
-            case 1:
+            case '1':
             toastr.success(message,title);
                 break;
-            case 2:
+            case '2':
             toastr.error(message,title);
                 break;
-            case 3:
+            case '3':
             toastr.warning(message,title);
                 break;
-            case 3:
+            case '4':
             toastr.info(message,title);
                 break;
 

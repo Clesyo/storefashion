@@ -25,10 +25,13 @@ Route::get('perfil', 'CompanyController@index');
 Route::post('company/store', 'CompanyController@store');
 
 Route::get('categorias', 'CategoryController@index');
+Route::post('categorias/store', 'CategoryController@store');
 
 Route::get('cores', 'ColorController@index');
+Route::post('cores/store', 'ColorController@store');
 
 Route::get('marcas', 'BrandController@index');
+Route::post('marcas/store', 'BrandController@store');
 
 
 

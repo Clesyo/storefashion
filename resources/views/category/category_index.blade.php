@@ -50,21 +50,27 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-category">
+                    <form action="{{ url('categorias/store', []) }}" method="post" id="form-category">
+                        @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="">Nome</label>
                                     <input type="text" name="name" class="form-control">
+                                    <input type="hidden" name="company_id" value="{{ $company->id }}">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="">Subcategoria</label>
-                                    <select class="form-control select2" name="parent" id="category_id" style="width: 100%">
-                                        <option>Select</option>
-                                        <option value="AK">Alaska</option>
-                                        <option value="HI">Hawaii</option>
+                                    <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary" style="margin-bottom: .4rem;">
+                                        <input type="checkbox" class="custom-control-input" id="extra" >
+                                        <label class="custom-control-label" for="extra">Categoria(Pai)</label>
+                                    </div>
+                                    <select class="form-control select2" name="parent" id="category_id" style="width: 100%" title="Selecione..." disabled>
+                                        <option disabled>Selecione...</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -129,7 +135,16 @@
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    @foreach ($categories as $category)
+
+                                    @endforeach
+                                    <tr>
+                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     </div>
@@ -158,12 +173,13 @@
 </div>
 
 @endsection
+
 @section('scripts')
 @if(Session::has('message'))
     <script>
-        var message = "Session::get('message')";
-        var title = "Session::get('title')";
-        var alert_type = "Session::get('alert_type')";
+        var message = "{{Session::get('message')}}";
+        var title = "{{Session::get('title')}}";
+        var alert_type = "{{Session::get('alert_type')}}";
 
         toastr.options = {
             "closeButton": false,
@@ -184,16 +200,16 @@
         }
 
         switch (alert_type) {
-            case 1:
+            case '1':
             toastr.success(message,title);
                 break;
-            case 2:
+            case '2':
             toastr.error(message,title);
                 break;
-            case 3:
+            case '3':
             toastr.warning(message,title);
                 break;
-            case 3:
+            case '4':
             toastr.info(message,title);
                 break;
 
@@ -201,7 +217,28 @@
                 break;
         }
 
-
     </script>
 @endif
+
+<script>
+$(document).ready(function(){
+
+
+    $("#extra").change(function (){
+        if($('#extra').is(':checked')){
+            alert('selecionado');
+        }else{
+            alert('não selecionado');
+        }
+    });
+
+});
+    $("#extra").click(function (){
+        if($('#extra').is(':checked')){
+            $('#category_id').prop('disabled',false);
+        }else{
+            $('#category_id').prop('disabled',true);
+        }
+    });
+</script>
 @endsection

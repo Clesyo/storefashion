@@ -50,7 +50,8 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post" id="form-submit">
+                    <form action="{{ url('cores/store', []) }}" method="post" id="form-submit">
+                        @csrf
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-group">
@@ -82,36 +83,36 @@
     </div><!-- /.modal -->
 </div>
 
+
 <div class="row mt-2">
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title mb-4">Lista de cores</h4>
-                <div class="table-responsive">
-                    <table class="table table-centered table-nowrap mb-0">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>#</th>
-                                <th>Cor</th>
-                                <th>Codigo da cor</th>
-                                <th>Ação</th>
-                            </tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
+    @foreach ($colors as $color)
+        <div class="col-xl-3 col-md-6">
+            <div class="card">
+                <div class="card-header bg-transparent">
+                    <h5 class="my-0 text-right">
+                        <a href="#"><i class="bx bx-palette" style="color: {{ $color->code_color }}"></i></a>
+
+                    </h5>
+                </div>
+                <div class="card-body text-center">
+                    <div class="color-box p-4 rounded" style="background-color: {{ $color->code_color }}">
+                        <h5 class="my-2 text-white">{{ $color->code_color }}</h5>
+                    </div>
+                    <h5 class="mb-0 mt-3" style="color: {{ $color->code_color }}">{{ $color->name }}</h5>
                 </div>
             </div>
         </div>
-    </div>
+    @endforeach
+
 </div>
 
 @endsection
 @section('scripts')
 @if(Session::has('message'))
     <script>
-        var message = "Session::get('message')";
-        var title = "Session::get('title')";
-        var alert_type = "Session::get('alert_type')";
+        var message = "{{Session::get('message')}}";
+        var title = "{{Session::get('title')}}";
+        var alert_type = "{{Session::get('alert_type')}}";
 
         toastr.options = {
             "closeButton": false,
@@ -132,16 +133,16 @@
         }
 
         switch (alert_type) {
-            case 1:
+            case '1':
             toastr.success(message,title);
                 break;
-            case 2:
+            case '2':
             toastr.error(message,title);
                 break;
-            case 3:
+            case '3':
             toastr.warning(message,title);
                 break;
-            case 3:
+            case '4':
             toastr.info(message,title);
                 break;
 

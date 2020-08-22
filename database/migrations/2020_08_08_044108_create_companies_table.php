@@ -18,8 +18,9 @@ class CreateCompaniesTable extends Migration
             $table->string('name');
             $table->string('document')->unique();
             $table->string('email')->unique();
-            $table->string('telephone');
-            $table->string('cell_phone');
+            $table->string('telephone')->nullable();
+            $table->string('whatsapp');
+            $table->string('cell_phone')->nullable();
             $table->string('cep');
             $table->string('andress');
             $table->integer('number');
