@@ -36,4 +36,5 @@ Route::post('marcas/store', 'BrandController@store');
 
 
 Route::get('produtos', 'ProductController@index');
-Route::get('produto/novo', 'ProductController@create');
+Route::get('produtos/novo', 'ProductController@create');
+Route::post('produtos/store', 'ProductController@store');

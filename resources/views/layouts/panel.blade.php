@@ -377,7 +377,7 @@
 
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-calendar"></i>
+                                <i class="mdi mdi-order-bool-descending-variant"></i>
                                 <span>Pedidos</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
@@ -398,13 +398,13 @@
                         </li> --}}
                         <li>
                             <a href="{{ url('produtos', []) }}" class=" waves-effect">
-                                <i class="bx bx-chat"></i>
+                                <i class="bx bx-archive-in"></i>
                                 <span>Produtos</span>
                             </a>
                         </li>
                         <li>
                             <a href="javascript: void(0);" class="has-arrow waves-effect">
-                                <i class="bx bx-calendar"></i>
+                                <i class="bx bx-save"></i>
                                 <span>Cadastro</span>
                             </a>
                             <ul class="sub-menu" aria-expanded="false">
@@ -443,13 +443,13 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-sm-6">
-                                <script>document.write(new Date().getFullYear())</script> © Skote.
+                                <script>document.write(new Date().getFullYear())</script> © Store Fashion.
                             </div>
-                            <div class="col-sm-6">
+                            {{-- <div class="col-sm-6">
                                 <div class="text-sm-right d-none d-sm-block">
-                                    Design & Develop by Themesbrand
+                                    Sua loja virtual
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </footer>
@@ -565,6 +565,10 @@
 
    <!-- toastr init -->
    <script src="{{ asset('panel/js/pages/toastr.init.js')}}"></script>
+
+   <!-- ckeditor init -->
+   {{-- <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
+   <script src="{{ asset('panel/libs/ckeditor/ckeditor.js')}}"></script>
 
 
     <!-- App js -->

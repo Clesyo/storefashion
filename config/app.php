@@ -227,6 +227,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Keygen' => Keygen\Keygen::class,
+        'Color' => App\Models\Color::class,
     ],
 
 ];

@@ -221,18 +221,7 @@
 @endif
 
 <script>
-$(document).ready(function(){
 
-
-    $("#extra").change(function (){
-        if($('#extra').is(':checked')){
-            alert('selecionado');
-        }else{
-            alert('não selecionado');
-        }
-    });
-
-});
     $("#extra").click(function (){
         if($('#extra').is(':checked')){
             $('#category_id').prop('disabled',false);
