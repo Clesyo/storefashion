@@ -44,3 +44,10 @@ Route::post('produtos/status', 'ProductController@alterStatusProduct');
 
 Route::post('estoque/store', 'ResaleProductController@store');
 Route::post('detalhe/store', 'ProductDetailController@store');
+
+Route::get('settings/permission','PermissionController@index');
+Route::post('settings/permission/store','PermissionController@store');
+
+Route::get('settings/role','RoleController@index');
+
+Route::get('settings/user','UserController@index');

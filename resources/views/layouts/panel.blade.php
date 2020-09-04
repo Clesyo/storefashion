@@ -474,13 +474,13 @@
                 <ul class="metismenu list-unstyled" id="side-menu">
                     <li class="menu-title">Gerenciamento de acessos</li>
                     <li>
-                        <a href="calendar.html" class=" waves-effect">
+                        <a href="{{ url('settings/role', []) }}" class=" waves-effect">
                             <i class="bx bx-paperclip"></i>
                             <span>Funções</span>
                         </a>
                     </li>
                     <li>
-                        <a href="calendar.html" class=" waves-effect">
+                        <a href="{{ url('settings/permission', []) }}" class=" waves-effect">
                             <i class="bx bx-shield-alt-2"></i>
                             <span>Permissões</span>
                         </a>
