@@ -17,13 +17,12 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('description');
             $table->float('price', 8, 2);
-            $table->float('price_promotion', 8, 2);
+            $table->float('price_promotion', 8, 2)->default(0.0);
             $table->boolean('promotion')->default(0);
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->boolean('available')->default(0);
             $table->boolean('launch')->default(0);
             $table->boolean('showcase')->default(0);
             $table->boolean('status')->default(1);

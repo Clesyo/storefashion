@@ -528,54 +528,32 @@
     <div class="rightbar-overlay"></div>
 
     <!-- JAVASCRIPT -->
-    <script src="{{ asset('panel/libs/jquery/jquery.min.js')}}"></script>
     <script src="{{ asset('panel/libs/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
     <script src="{{ asset('panel/libs/metismenu/metisMenu.min.js')}}"></script>
     <script src="{{ asset('panel/libs/simplebar/simplebar.min.js')}}"></script>
     <script src="{{ asset('panel/libs/node-waves/waves.min.js')}}"></script>
 
-    <script src="{{ asset('panel/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+
 
     <!-- apexcharts -->
     {{-- <script src="{{ asset('panel/libs/apexcharts/apexcharts.min.js')}}"></script> --}}
 
     {{-- <script src="{{ asset('panel/js/pages/dashboard.init.js')}}"></script> --}}
 
-    <!-- bs custom file input plugin -->
-    <script src="{{asset('panel/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
-
-    <script src="{{asset('panel/libs/select2/js/select2.min.js')}}"></script>
-    <!-- Bootstrap Select JS -->
-	<script src="{{asset('panel/libs/bs-select/bs-select.min.js')}}"></script>
-
-    <!-- form advanced init -->
-    <script src="{{asset('panel/js/pages/form-advanced.init.js')}}"></script>
-
-    <script src="{{ asset('panel/js/pages/form-element.init.js')}}"></script>
 
 
-   <!-- Summernote js -->
-   <script src="{{ asset('panel/libs/summernote/summernote-bs4.min.js')}}"></script>
-
-   <!-- init js -->
-   <script src="{{ asset('panel/js/pages/form-editor.init.js')}}"></script>
-
+    @yield('js')
    <!-- toastr plugin -->
    <script src="{{ asset('panel/libs/toastr/build/toastr.min.js')}}"></script>
 
    <!-- toastr init -->
    <script src="{{ asset('panel/js/pages/toastr.init.js')}}"></script>
 
-   <!-- ckeditor init -->
-   {{-- <script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script> --}}
-   <script src="{{ asset('panel/libs/ckeditor/ckeditor.js')}}"></script>
-
 
     <!-- App js -->
     <script src="{{ asset('panel/js/app.js')}}"></script>
 
 
-    @yield('js')
     @yield('scripts')
 
 </body>

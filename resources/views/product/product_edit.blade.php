@@ -34,6 +34,7 @@
 </div>
 <!-- end page title -->
 <form action="{{ url('produtos/store', []) }}" method="post" id="form-submit" enctype="multipart/form-data">
+    @method('PATCH')
     @csrf
 <div class="row">
     <div class="col-lg-12">
@@ -47,7 +48,8 @@
         <div class="col-sm-2">
             <div class="form-group">
                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-3">
-                    <input type="checkbox" class="custom-control-input" id="customCheck-status" checked name="product[status]" value="1">
+                    <input type="checkbox" class="custom-control-input" id="customCheck-status"
+                    @if($product->status == 1) checked @endif name="product[status]" value="1">
                     <label class="custom-control-label" for="customCheck-status">Disponivel</label>
                 </div>
             </div>
@@ -55,7 +57,8 @@
                         <div class="col-sm-2">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck-showcase" name="product[showcase]" value="1">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck-showcase"
+                                    @if($product->showcase == 1) checked @endif name="product[showcase]" value="1">
                                     <label class="custom-control-label" for="customCheck-showcase">Mostrar na Vitrine</label>
                                 </div>
                             </div>
@@ -66,7 +69,8 @@
                         <div class="col-lg-6">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-3">
-                                    <input type="checkbox" class="custom-control-input" id="customCheck-launch" name="product[launch]" value="1">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck-launch"
+                                    @if($product->launch == 1) checked @endif name="product[launch]" value="1">
                                     <label class="custom-control-label" for="customCheck-launch">Lançamento</label>
                                 </div>
                             </div>
@@ -78,9 +82,9 @@
                             <div class="form-group">
                                 <label class="control-label">Categoria*</label>
                                 <select class="form-control select2" name="product[category_id]">
-                                    <option disabled>Select</option>
+                                    <option disabled >Select</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}" @if($product->category_id == $category->id) selected @endif>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                                 <div class="m-2 ">
@@ -98,7 +102,7 @@
                                 <select class="form-control select2" name="product[brand_id]">
                                     <option disabled>Selecione...</option>
                                     @foreach ($brands as $brand)
-                                        <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        <option value="{{ $brand->id }}" @if($product->brand_id == $brand->id) selected @endif>{{ $brand->name }}</option>
                                     @endforeach
                                 </select>
                                 <div class="m-2 ">
@@ -117,8 +121,8 @@
                         <div class="col-sm-12">
                             <div class="form-group">
                                 <label for="description">Nome do Produto*</label>
-                                <input id="description" name="product[description]" type="text" class="form-control">
-                                <input type="hidden" name="product[company_id]" value="{{ $company->id }}">
+                                <input id="description" name="product[description]" value="{{ $product->description }}" type="text" class="form-control">
+                                <input type="hidden" name="product[company_id]" value="{{ $product->company_id }}">
                             </div>
                         </div>
                     </div>
@@ -127,7 +131,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="price">Preço* </label>
-                                <input id="price" name="product[price]" type="number" class="form-control">
+                                <input id="price" name="product[price]" value="{{ $product->price }}" type="number" class="form-control">
                             </div>
 
                         </div>
@@ -135,10 +139,10 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <div class="custom-control custom-checkbox custom-checkbox-outline custom-checkbox-primary mb-2 mx-1">
-                                    <input type="checkbox" class="custom-control-input" id="promotion" value="1" name="product[promotion]">
+                                    <input type="checkbox" class="custom-control-input" id="promotion" value="1" @if($product->promotion == 1) checked @endif name="product[promotion]">
                                     <label class="custom-control-label" for="promotion">Preço promocional</label>
                                 </div>
-                                <input id="price_promotion" name="product[price_promotion]" type="number" class="form-control" disabled>
+                                <input id="price_promotion" name="product[price_promotion]" value="{{ $product->price_promotion }}" type="number" class="form-control" disabled>
                             </div>
                         </div>
                     </div>
@@ -175,13 +179,13 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="available">Disponivel</label>
-                                <input id="available" name="resale[quantity_available]" type="number" class="form-control">
+                                <input id="available" name="resale[quantity_available]" value="{{ $product->resale->quantity_available }}" type="number" class="form-control">
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="accounting">Contábil</label>
-                                <input id="accounting" readonly name="resale[quantity_accounting]" value="0" type="number" class="form-control">
+                                <input id="accounting" readonly name="resale[quantity_accounting]" value="{{ $product->resale->quantity_accounting }}" type="number" class="form-control">
                             </div>
                         </div>
 
@@ -197,13 +201,13 @@
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="">Tamanho</label>
-                            <input type="text" class="form-control" name="detail[size]" style="text-transform: uppercase">
+                            <input type="text" class="form-control" value="{{ $product->resale->detail->size }}" name="detail[size]" style="text-transform: uppercase">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="form-group">
                             <label for="">Material</label>
-                            <input type="text" class="form-control" name="detail[material]">
+                            <input type="text" class="form-control" value="{{ $product->resale->detail->material }}" name="detail[material]">
                         </div>
                     </div>
                     <div class="col-sm-4">
@@ -212,7 +216,8 @@
                             <select class="form-control select2" name="detail[color_id]">
                                 <option disabled>Selecione...</option>
                                 @foreach (Color::all() as $color)
-                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                    <option value="{{ $color->id }}"
+                                    @if($product->resale->detail->color_id == $color->id) @endif>{{ $color->name }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -223,7 +228,7 @@
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="">Informação adicional do produto</label>
-                            <textarea class="form-control" name="detail[additional_infor]" style="width: 100%; height: 10rem"></textarea>
+                            <textarea class="form-control" name="detail[additional_infor]" style="width: 100%; height: 10rem">{{ $product->resale->detail->additional_infor }}</textarea>
                         </div>
                     </div>
                 </div>

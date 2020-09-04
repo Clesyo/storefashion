@@ -37,4 +37,10 @@ Route::post('marcas/store', 'BrandController@store');
 
 Route::get('produtos', 'ProductController@index');
 Route::get('produtos/novo', 'ProductController@create');
+Route::get('produtos/edit/{id}', 'ProductController@edit');
 Route::post('produtos/store', 'ProductController@store');
+Route::post('produtos/vitrine/status', 'ProductController@alterStatusShowcase');
+Route::post('produtos/status', 'ProductController@alterStatusProduct');
+
+Route::post('estoque/store', 'ResaleProductController@store');
+Route::post('detalhe/store', 'ProductDetailController@store');

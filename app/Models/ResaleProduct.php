@@ -9,4 +9,14 @@ class ResaleProduct extends Model
     //
     protected $fillable = ['quantity_available','quantity_accounting','quantity_allocated',
     'date_last_exit','product_id'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function detail()
+    {
+        return $this->hasOne(ProductDetail::class);
+    }
 }

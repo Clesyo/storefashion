@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ResaleProduct;
+use App\Models\ProductDetail;
 use Illuminate\Http\Request;
 
-class ResaleProductController extends Controller
+class ProductDetailController extends Controller
 {
     //
     public function store(Request $req)
     {
+        $detail = new ProductDetail();
         $notification = null;
-        $resale = new ResaleProduct();
-        //dd($req->all());
+        $detail = $detail::create($req->all());
 
-        $resale = $resale::create($req->all());
 
-        if($resale){
+        if($detail){
 
             $notification = [
-                'message' => 'Estoque incluido com sucesso.',
+                'message' => 'Detalhes do produto incluido com sucesso.',
                 'title' => 'Mensagem:',
                 'alert_type' => 1,
             ];

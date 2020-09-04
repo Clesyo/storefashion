@@ -154,3 +154,7 @@
     </script>
 @endif
 @endsection
+
+@section('js')
+<script src="{{ asset('panel/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+@endsection

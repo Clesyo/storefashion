@@ -340,4 +340,18 @@
 
 @section('js')
 <script src="{{ asset('panel/libs/jquery-mask/jquery.mask.min.js')}}"></script>
+<!-- bs custom file input plugin -->
+<script src="{{asset('panel/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
+
+<script src="{{asset('panel/libs/select2/js/select2.min.js')}}"></script>
+<!-- Bootstrap Select JS -->
+<script src="{{asset('panel/libs/bs-select/bs-select.min.js')}}"></script>
+
+<!-- form advanced init -->
+<script src="{{asset('panel/js/pages/form-advanced.init.js')}}"></script>
+
+<script src="{{ asset('panel/js/pages/form-element.init.js')}}"></script>
+
+<!-- init js -->
+<script src="{{ asset('panel/js/pages/form-editor.init.js')}}"></script>
 @endsection
