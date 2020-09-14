@@ -61,9 +61,9 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="">Selecione a cor</label>
-                                    <div class="input-group colorpicker-default" title="Use o marcador">
-                                        <input type="text" class="form-control input-lg" name="code_color" value="#ffffff"/>
+                                    <label for="">Selecione a cor*</label>
+                                    <div class="input-group colorpicker-default" title="Using format option">
+                                        <input type="text" class="form-control input-lg" name="code_color" value="#4667cc"/>
                                         <span class="input-group-append">
                                             <span class="input-group-text colorpicker-input-addon"><i></i></span>
                                         </span>
@@ -153,8 +153,59 @@
 
     </script>
 @endif
+{{-- 
+<script>
+    function deleteConfirmation(id) {
+        swal({
+            title: "Excluir?",
+            text: "Deseja mesmo excluir!",
+            type: "warning",
+            /* buttons: {
+                cancel: true,
+                confirm: "Confirm",
+            }, */
+            showCancelButton: !0,
+            confirmButtonText: "Sim, exclua!",
+            cancelButtonText: "Não, cancele!",
+            reverseButtons: !0
+        }).then(function (e) {
+            console.log(e.value);
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+    
+                $.ajax({
+                    type: 'POST',
+                    url: "{{url('orcamento/delete')}}/" + id,
+                    data: {_token: CSRF_TOKEN},
+                    dataType: 'JSON',
+                    success: function (results) {
+    
+                        if (results.success === true) {
+                            swal("Concluído!", results.message, "success").then(function(){
+                                location.reload(true);
+                            });
+                        } else {
+                            swal("Error!", results.message, "error");
+                        }
+                    }
+                });
+    
+            } else {
+                e.dismiss;
+            }
+    
+        }, function (dismiss) {
+            return false;
+        })
+    }
+    </script> --}}
 @endsection
 
 @section('js')
 <script src="{{ asset('panel/libs/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js')}}"></script>
+{{-- <script src="{{ asset('panel/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+<script src="{{ asset('panel/libs/bootstrap-timepicker/js/bootstrap-timepicker.min.js')}}"></script>
+<script src="{{ asset('panel/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+<script src="{{ asset('panel/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script> --}}
+<!-- form advanced init -->
 @endsection

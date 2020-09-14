@@ -33,7 +33,7 @@
     </div>
 </div>
 <!-- end page title -->
-<form action="{{ url('produtos/store', []) }}" method="post" id="form-submit" enctype="multipart/form-data">
+<form class="repeater" action="{{ url('produtos/store', []) }}" method="post" id="form-submit" enctype="multipart/form-data">
     @csrf
 <div class="row">
     <div class="col-lg-12">
@@ -156,74 +156,81 @@
 
         <div class="card">
             <div class="card-body">
-                <h4 class="card-title">Inseir imagem</h4>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile" name="image[]" multiple>
-                    <label class="custom-file-label" for="customFile">
-                        Escolher arquivo</label>
+                <h4 class="card-title">Estoque</h4>
+
+                <div data-repeater-list="resale">
+                    <div data-repeater-item class="row mt-3">
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="available">Disponivel</label>
+                                <input name="quantity_available" type="text" class="form-control">
+                            </div>
+                        </div>
+                       {{--  <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="accounting">Contábil</label>
+                                <input id="accounting" readonly name="quantity_accounting]" value="0" type="number" class="form-control">
+                            </div>
+                        </div> --}}
+
+
+                        <div class="col-sm-1">
+                            <div class="form-group">
+                                <label for="">Tamanho</label>
+                                <input type="text" class="form-control" name="size" style="text-transform: uppercase">
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="form-group">
+                                <label for="">Material</label>
+                                <input type="text" class="form-control" name="material">
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group">
+                                <label for="">Cor</label>
+                                <select class="form-control" name="color_id">
+                                    <option disabled>Selecione...</option>
+                                    @foreach (Color::all() as $color)
+                                        <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="">Imagem</label>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input"  name="image" multiple>
+                                <label class="custom-file-label" for="customFile">
+                                    Escolher arquivo</label>
+                            </div>
+                        </div>
+                        <div class="col-md-1 align-self-center">
+                            <input data-repeater-delete type="button" class="btn btn-primary btn-block pr-1" value="Deletar"/>
+                        </div>
+                        <div class="col-md-12">
+
+                            <hr>
+                        </div>
+                    </div>
                 </div>
+                <input data-repeater-create type="button" class="btn btn-success mt-3" value="Add"/>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-body">
-
-                <h4 class="card-title">Estoque</h4>
-
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="available">Disponivel</label>
-                                <input id="available" name="resale[quantity_available]" type="number" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="accounting">Contábil</label>
-                                <input id="accounting" readonly name="resale[quantity_accounting]" value="0" type="number" class="form-control">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> <!-- end card-->
 
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title mb-3">Caracteristicas do produto</h4>
 
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Tamanho</label>
-                            <input type="text" class="form-control" name="detail[size]" style="text-transform: uppercase">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Material</label>
-                            <input type="text" class="form-control" name="detail[material]">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Cor</label>
-                            <select class="form-control select2" name="detail[color_id]">
-                                <option disabled>Selecione...</option>
-                                @foreach (Color::all() as $color)
-                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
+
                 {{-- <div class="summernote" ></div> --}}
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="form-group">
                             <label for="">Informação adicional do produto</label>
-                            <textarea class="form-control" name="detail[additional_infor]" style="width: 100%; height: 10rem"></textarea>
+                            <textarea class="form-control" name="additional_infor" style="width: 100%; height: 10rem"></textarea>
                         </div>
                     </div>
                 </div>
@@ -430,6 +437,9 @@
 
 @section('js')
 <script src="{{ asset('panel/libs/jquery-mask/jquery.mask.min.js')}}"></script>
+<script src="{{asset('panel/libs/jquery.repeater/jquery.repeater.min.js')}}"></script>
+
+        <script src="{{asset('panel/js/pages/form-repeater.int.js')}}"></script>
  <!-- bs custom file input plugin -->
  <script src="{{asset('panel/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 

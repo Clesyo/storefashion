@@ -8,7 +8,7 @@ class ResaleProduct extends Model
 {
     //
     protected $fillable = ['quantity_available','quantity_accounting','quantity_allocated',
-    'date_last_exit','product_id'];
+    'size','material','color_id','additional_infor','product_id'];
 
     public function product()
     {

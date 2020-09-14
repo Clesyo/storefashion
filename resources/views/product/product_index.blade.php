@@ -118,104 +118,37 @@
                                 </td>
                                 <td>
                                     <div class="btn-group btn-group-sm">
-                                        @if ($product->resale == null)
-                                            <button type="button" data-toggle="modal" data-target="#add-stoke-{{$product->id}}" class="btn btn-primary waves-light waves-effect"
-                                                data-tt="tooltip" data-placement="top" title="" data-original-title="Adicionar estoque"><i class="fas fa-archive bx-spin"></i></button>
-                                            <!-- sample modal content -->
-                                            <div id="add-stoke-{{$product->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title mt-0" id="myModalLabel">Incluir estoque</h5>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form action="{{ url('estoque/store', []) }}" method="post" id="form-submit-stoke-{{$product->id}}">
-                                                                @csrf
-                                                                <div class="form-group">
-                                                                    <label for="">Informe a quantidade</label>
-                                                                    <input type="number" name="quantity_available" class="form-control" id="available">
-                                                                    <input type="hidden" name="product_id" value="{{ $product->id }}" >
-                                                                    <input type="hidden" name="quantity_accounting" value="{{ $product->id }}" id="accounting">
-                                                                </div>
-                                                            </form>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Fechar</button>
-                                                            <button type="button" class="btn btn-primary waves-effect waves-light"
-                                                            onclick="event.preventDefault(); document.getElementById('form-submit-stoke-{{$product->id}}').submit();">Gravar</button>
-                                                        </div>
-                                                    </div><!-- /.modal-content -->
-                                                </div><!-- /.modal-dialog -->
-                                            </div><!-- /.modal -->
-
-                                        @else
-                                            @if ($product->resale->detail == null)
-                                                <button type="button" data-toggle="modal" data-target="#add-detail-{{$product->id}}" class="btn btn-primary waves-light waves-effect"
-                                                    data-tt="tooltip" data-placement="top" title="" data-original-title="Adicionar detalhes do produto"><i class="fas fa-newspaper bx-spin font-16"></i></button>
-                                                <!--  Modal content for the above example -->
-                                                <div class="modal fade" id="add-detail-{{$product->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog modal-lg">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title mt-0" id="myLargeModalLabel">Detalhes do produto</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
+                                        <button type="button" data-toggle="modal" data-target="#add-stoke-{{$product->id}}" class="btn btn-primary waves-light waves-effect"
+                                            data-tt="tooltip" data-placement="top" title="" data-original-title="Adicionar estoque"><i class="fas fa-archive bx-spin"></i></button>
+                                        <!-- sample modal content -->
+                                        <div id="add-stoke-{{$product->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title mt-0" id="myModalLabel">Incluir estoque</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form action="{{ url('estoque/store', []) }}" method="post" id="form-submit-stoke-{{$product->id}}">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                <label for="">Informe a quantidade</label>
+                                                                <input type="number" name="quantity_available" class="form-control" id="available">
+                                                                <input type="hidden" name="product_id" value="{{ $product->id }}" >
+                                                                <input type="hidden" name="quantity_accounting" value="{{ $product->id }}" id="accounting">
                                                             </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ url('detalhe/store', []) }}" method="post" id="form-submit-detail-{{$product->id}}">
-                                                                    @csrf
-                                                                    <div class="row">
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <label for="">Tamanho</label>
-                                                                                <input type="text" class="form-control" name="size" style="text-transform: uppercase">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <label for="">Material</label>
-                                                                                <input type="text" class="form-control" name="material">
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-sm-4">
-                                                                            <div class="form-group">
-                                                                                <label for="">Cor</label>
-                                                                                <select class="form-control select2" name="color_id">
-                                                                                    <option disabled>Selecione...</option>
-                                                                                    @foreach (Color::all() as $color)
-                                                                                        <option value="{{ $color->id }}">{{ $color->name }}</option>
-                                                                                    @endforeach
-                                                                                </select>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                    {{-- <div class="summernote" ></div> --}}
-                                                                    <div class="row">
-                                                                        <div class="col-lg-12">
-                                                                            <div class="form-group">
-                                                                                <label for="">Informação adicional do produto</label>
-                                                                                <textarea class="form-control" name="additional_infor" style="width: 100%; height: 10rem"></textarea>
-                                                                                <input type="hidden" name="resale_product_id" value="{{ $product->resale->id }}">
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Fechar</button>
-                                                            <button type="button" class="btn btn-primary waves-effect waves-light"
-                                                            onclick="event.preventDefault(); document.getElementById('form-submit-detail-{{$product->id}}').submit();">Gravar</button>
-                                                        </div>
-                                                        </div><!-- /.modal-content -->
-                                                    </div><!-- /.modal-dialog -->
-                                                </div><!-- /.modal -->
-                                            @endif
-                                        @endif
-
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary waves-effect" data-dismiss="modal">Fechar</button>
+                                                        <button type="button" class="btn btn-primary waves-effect waves-light"
+                                                        onclick="event.preventDefault(); document.getElementById('form-submit-stoke-{{$product->id}}').submit();">Gravar</button>
+                                                    </div>
+                                                </div><!-- /.modal-content -->
+                                            </div><!-- /.modal-dialog -->
+                                        </div><!-- /.modal -->
 
                                         <a href="{{ url('produtos/edit/'.$product->id, []) }}" class="btn btn-primary waves-light waves-effect"
                                         data-tt="tooltip" data-placement="top" title="" data-original-title="Editar"><i class="fas fa-edit"></i></a>
