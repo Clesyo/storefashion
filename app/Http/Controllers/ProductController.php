@@ -41,9 +41,13 @@ class ProductController extends Controller
         $company = Company::findOrFail($req->product['company_id']);
         $notification = null;
         $data_product = $req->product;
+        $data_product['price'] = str_replace(',','.',$data_product['price']);
+        if (isset($data_product['price_promotion'])) {
+            $data_product['price_promotion'] = str_replace(',','.',$data_product['price_promotion']);
+        }
         $data_resale = $req->resale;
         $data_detail = $req->detail;
-        dd($data_resale);
+        //dd($data_resale);
 
 
         $images = $req->allFiles('image');
@@ -52,7 +56,7 @@ class ProductController extends Controller
 
         if($product){
 
-            for ($i=0; $i < count($images['image']); $i++) {
+            for ($i=0 ; $i < count($images['image']); $i++) {
                 $file = $images['image'][$i];
 
                 $image = new ImageProduct();
@@ -62,7 +66,7 @@ class ProductController extends Controller
                 unset($image);
             }
 
-            $resale['product_id'] = $product->id;
+            $data_resale['product_id'] = $product->id;
             $resale = $resale::create($data_resale);
 
             if($resale){

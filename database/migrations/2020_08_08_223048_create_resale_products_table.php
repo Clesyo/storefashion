@@ -17,7 +17,7 @@ class CreateResaleProductsTable extends Migration
             $table->id();
             $table->integer('quantity_available');
             $table->integer('quantity_accounting');
-            $table->integer('quantity_allocated');
+            $table->integer('quantity_allocated')->default(0);
             $table->date('date_last_exit')->nullable();
             $table->unsignedBigInteger('product_id');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

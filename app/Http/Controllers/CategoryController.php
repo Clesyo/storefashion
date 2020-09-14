@@ -22,7 +22,7 @@ class CategoryController extends Controller
     {
         $notication = null;
         $category = new Category();
-        dd($req->all());
+        //dd($req->all());
         $category = $category::create($req->all());
 
         if($category){

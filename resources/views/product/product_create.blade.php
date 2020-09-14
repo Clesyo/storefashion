@@ -127,7 +127,7 @@
                         <div class="col-sm-6">
                             <div class="form-group">
                                 <label for="price">Preço* </label>
-                                <input id="price" name="product[price]" type="number" class="form-control">
+                                <input id="price" name="product[price]" type="text" class="form-control money">
                             </div>
 
                         </div>
@@ -138,7 +138,7 @@
                                     <input type="checkbox" class="custom-control-input" id="promotion" value="1" name="product[promotion]">
                                     <label class="custom-control-label" for="promotion">Preço promocional</label>
                                 </div>
-                                <input id="price_promotion" name="product[price_promotion]" type="number" class="form-control" disabled>
+                                <input id="price_promotion" name="product[price_promotion]" type="text" class="form-control money" disabled>
                             </div>
                         </div>
                     </div>
@@ -422,12 +422,14 @@
         $('#accounting').val($('#available').val());
     });
 
+    $('.money').mask("#.##0,00", {reverse: true});
 </script>
 
 
 @endsection
 
 @section('js')
+<script src="{{ asset('panel/libs/jquery-mask/jquery.mask.min.js')}}"></script>
  <!-- bs custom file input plugin -->
  <script src="{{asset('panel/libs/bs-custom-file-input/bs-custom-file-input.min.js')}}"></script>
 
