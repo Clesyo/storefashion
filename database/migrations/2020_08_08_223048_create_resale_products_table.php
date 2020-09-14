@@ -17,22 +17,14 @@ class CreateResaleProductsTable extends Migration
             $table->id();
             $table->integer('quantity_available');
             $table->integer('quantity_accounting');
-            $table->integer('quantity_allocated');
-            $table->date('date_last_exit')->nullable();
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->timestamps();
-        });
-
-        Schema::create('product_details', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('quantity_allocated')->default(0);
             $table->char('size',2);
             $table->string('material')->nullable();
-            $table->unsignedBigInteger('color_id');
-            $table->foreign('color_id')->references('id')->on('colors')->onDelete('cascade');
-            $table->unsignedBigInteger('resale_product_id');
-            $table->foreign('resale_product_id')->references('id')->on('resale_products')->onDelete('cascade');
+            $table->unsignedBigInteger('color_id')->nullable();
+            $table->foreign('color_id')->references('id')->on('colors');
             $table->longText('additional_infor')->nullable();
+            $table->unsignedBigInteger('product_id');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -44,7 +36,6 @@ class CreateResaleProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_details');
         Schema::dropIfExists('resale_products');
     }
 }

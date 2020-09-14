@@ -117,7 +117,7 @@
                     <div class="mt-5 text-center">
 
                         <div>
-                            <p>Não tem uma conta ? <a href="auth-register.html" class="font-weight-medium text-primary">
+                            <p>Não tem uma conta ? <a href="{{ route('register') }}" class="font-weight-medium text-primary">
                                 Inscreva-se agora </a> </p>
                         </div>
                     </div>

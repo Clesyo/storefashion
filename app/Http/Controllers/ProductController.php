@@ -35,6 +35,9 @@ class ProductController extends Controller
 
     public function store(Request $req)
     {
+
+
+        dd($req->all());
         $product = new Product();
         $resale = new ResaleProduct();
         $detail = new ProductDetail();
@@ -43,7 +46,6 @@ class ProductController extends Controller
         $data_product = $req->product;
         $data_resale = $req->resale;
         $data_detail = $req->detail;
-        dd($data_resale);
 
 
         $images = $req->allFiles('image');
