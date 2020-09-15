@@ -14,10 +14,6 @@
 
     <link href="{{ asset('panel/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('panel/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet" type="text/css">
-    <!-- Bootstrap Select CSS -->
-	<link rel="stylesheet" href="{{asset('panel/libs/bs-select/bs-select.css')}}" />
-    <!-- Summernote css -->
-    <link href="{{ asset('panel/libs/summernote/summernote-bs4.min.css')}}" rel="stylesheet" type="text/css" />
 
     <link rel="stylesheet" type="text/css" href="{{ asset('panel/libs/toastr/build/toastr.min.css')}}">
 
@@ -549,7 +545,8 @@
    <!-- toastr init -->
    <script src="{{ asset('panel/js/pages/toastr.init.js')}}"></script>
 
-
+    <!-- form advanced init -->
+    <script src="{{ asset('panel/js/pages/form-advanced.init.js')}}"></script>
     <!-- App js -->
     <script src="{{ asset('panel/js/app.js')}}"></script>
 

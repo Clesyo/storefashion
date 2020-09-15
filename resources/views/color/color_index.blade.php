@@ -63,7 +63,7 @@
                                 <div class="form-group">
                                     <label for="">Selecione a cor*</label>
                                     <div class="input-group colorpicker-default" title="Using format option">
-                                        <input type="text" class="form-control input-lg" name="code_color" value="#4667cc"/>
+                                        <input type="text" class="form-control input-lg" value="#4667cc"/>
                                         <span class="input-group-append">
                                             <span class="input-group-text colorpicker-input-addon"><i></i></span>
                                         </span>
@@ -153,7 +153,7 @@
 
     </script>
 @endif
-{{-- 
+{{--
 <script>
     function deleteConfirmation(id) {
         swal({
@@ -172,14 +172,14 @@
             console.log(e.value);
             if (e.value === true) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    
+
                 $.ajax({
                     type: 'POST',
                     url: "{{url('orcamento/delete')}}/" + id,
                     data: {_token: CSRF_TOKEN},
                     dataType: 'JSON',
                     success: function (results) {
-    
+
                         if (results.success === true) {
                             swal("Concluído!", results.message, "success").then(function(){
                                 location.reload(true);
@@ -189,11 +189,11 @@
                         }
                     }
                 });
-    
+
             } else {
                 e.dismiss;
             }
-    
+
         }, function (dismiss) {
             return false;
         })
