@@ -200,11 +200,8 @@
 
                         <div class="col-md-4">
                             <label for="">Imagem</label>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input"  name="image" multiple>
-                                <label class="custom-file-label" for="customFile">
-                                    Escolher arquivo</label>
-                            </div>
+                            <input type="file"  name="image" multiple>
+                            
                         </div>
                         <div class="col-md-1 align-self-center">
                             <input data-repeater-delete type="button" class="btn btn-primary btn-block pr-1" value="Deletar"/>
