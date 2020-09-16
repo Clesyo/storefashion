@@ -37,10 +37,7 @@ class ProductController extends Controller
     {
 
 
-        dd($req->all());
         $product = new Product();
-        $resale = new ResaleProduct();
-        $detail = new ProductDetail();
         $company = Company::findOrFail($req->product['company_id']);
         $notification = null;
         $data_product = $req->product;
@@ -49,34 +46,53 @@ class ProductController extends Controller
             $data_product['price_promotion'] = str_replace(',','.',$data_product['price_promotion']);
         }
         $data_resale = $req->resale;
-        $data_detail = $req->detail;
-        //dd($data_resale);
+        //dd(count($data_resale));
 
 
-        $images = $req->allFiles('image');
+
 
         $product = $product::create($data_product);
 
         if($product){
 
-            for ($i=0 ; $i < count($images['image']); $i++) {
-                $file = $images['image'][$i];
+            for ($i=0; $i < count($data_resale); $i++) {
+                $resale = new ResaleProduct();
 
-                $image = new ImageProduct();
-                $image->path = $file->store('EMPRESA/'.$company->name.'/PRODUCTS');
-                $image->product_id = $product->id;
-                $image->save();
-                unset($image);
+                $resale = $resale::create([
+                    'quantity_available' => $data_resale[$i]['quantity_available'],
+                    'quantity_accounting' => $data_resale[$i]['quantity_available'],
+                    'quantity_allocated' => 0,
+                    'size' => strtoupper($data_resale[$i]['size']),
+                    'material' => $data_resale[$i]['material'],
+                    'color_id' => (isset($data_resale[$i]['color_id'])) ? $resale->color_id = $data_resale[$i]['color_id'] : null,
+                    'product_id' => $product->id,
+                ]);
+                $resale_id = $resale->id;
+
+                /* $resale->quantity_available = $data_resale[$i]['quantity_available'];
+                $resale->quantity_accounting = $data_resale[$i]['quantity_available'];
+                $resale->quantity_allocated = 0;
+                $resale->size = strtoupper($data_resale[$i]['size']);
+                $resale->material = $data_resale[$i]['material'];
+                if(isset($data_resale[$i]['color_id'])){
+                    $resale->color_id = $data_resale[$i]['color_id'];
+                }
+                $resale->product_id = $product->id; */
+
+                $images = $data_resale[$i]['image'];
+
+                for ($x=0 ; $x < count($images); $x++) {
+                    $file = $images[$x];
+
+                    $image = new ImageProduct();
+                    $image->path = $file->store('EMPRESA/'.$company->name.'/PRODUCTS');
+                    $image->resale_products_id = $resale_id;
+                    $image->save();
+                    unset($image);
+                }
+                //$resale->save();
+                unset($resale_id);
             }
-
-            $data_resale['product_id'] = $product->id;
-            $resale = $resale::create($data_resale);
-
-            if($resale){
-                $data_detail['resale_product_id'] = $resale->id;
-                $detail = $detail::create($data_detail);
-            }
-
             $notification = [
                 'message' => 'Produto incluido com sucesso.',
                 'title' => 'Mensagem:',

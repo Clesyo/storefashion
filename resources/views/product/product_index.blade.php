@@ -56,7 +56,7 @@
                         <tr>
                             <th scope="col" style="width: 100px">#</th>
                             <th scope="col">Produto</th>
-                            <th scope="col">Estoque</th>
+                            <th scope="col">Tamanhos</th>
                             <th scope="col">Opções</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
@@ -65,7 +65,7 @@
                     <tbody>
                         @foreach ($products as $product)
                             <tr>
-                                <td><img src="{{ url('storage/'.$product->images[0]->path, []) }}" alt="" class="avatar-sm disabled"></td>
+                                <td>{{ $product->id }}</td>
                                 <td>
                                     @if ($product->status == 1)
                                         <strong><h5 class="text-truncate font-size-14"><a href="#" class="text-dark">{{ $product->description }}</a></h5></strong>
@@ -85,15 +85,20 @@
 
                                 </td>
                                 <td>
-                                    @if ($product->resale != null)
-                                        {{ $product->resale->quantity_available }}
+                                    @if ($product->resales != null)
+                                        @foreach ($product->resales as $resale)
+                                            @if ($resale->quantity_available > 0)
+                                                {{ $resale->size }},
+                                            @endif
+
+                                        @endforeach
                                     @else
                                         {{ __('0') }}
                                     @endif
                                 </td>
                                 <td>
                                     <p class="text-muted mb-0">
-                                        @if($product->resale != null && $product->resale->quantity_available > 0 && $product->status == 1)
+                                        @if($product->resales != null && $product->status == 1)
                                             <i class="fas fa-check-circle text-success"></i> Disponível
                                         @else
                                             <i class="fas fa-thumbs-down"></i> <del>Disponível</del>
@@ -122,7 +127,7 @@
                                             data-tt="tooltip" data-placement="top" title="" data-original-title="Adicionar estoque"><i class="fas fa-archive bx-spin"></i></button>
                                         <!-- sample modal content -->
                                         <div id="add-stoke-{{$product->id}}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
+                                            <div class="modal-dialog modal-xl">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title mt-0" id="myModalLabel">Incluir estoque</h5>
@@ -133,12 +138,56 @@
                                                     <div class="modal-body">
                                                         <form action="{{ url('estoque/store', []) }}" method="post" id="form-submit-stoke-{{$product->id}}">
                                                             @csrf
-                                                            <div class="form-group">
-                                                                <label for="">Informe a quantidade</label>
-                                                                <input type="number" name="quantity_available" class="form-control" id="available">
-                                                                <input type="hidden" name="product_id" value="{{ $product->id }}" >
-                                                                <input type="hidden" name="quantity_accounting" value="{{ $product->id }}" id="accounting">
+                                                            <div data-repeater-list="resale">
+                                                                <div data-repeater-item class="row mt-3">
+                                                                    <div class="col-sm-1">
+                                                                        <div class="form-group">
+                                                                            <label for="available">Disponivel</label>
+                                                                            <input name="quantity_available" type="text" class="form-control">
+                                                                        </div>
+                                                                    </div>
+                                            
+                                                                    <div class="col-sm-1">
+                                                                        <div class="form-group">
+                                                                            <label for="">Tamanho</label>
+                                                                            <input type="text" class="form-control" name="size" style="text-transform: uppercase">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <div class="form-group">
+                                                                            <label for="">Material</label>
+                                                                            <input type="text" class="form-control" name="material">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+                                                                        <div class="form-group">
+                                                                            <label for="">Cor</label>
+                                                                            <select class="form-control" name="color_id">
+                                                                                <option disabled>Selecione...</option>
+                                                                                @foreach (Color::all() as $color)
+                                                                                    <option value="{{ $color->id }}">{{ $color->name }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                            
+                                                                    <div class="col-md-4">
+                                                                        <div class="form-group">
+                                                                            <label for="">Imagem</label><br>
+                                                                            <input type="file"  name="image" multiple>
+                                                                        </div>
+                                                                    </div>
+                                                                        
+                                                                    <div class="col-md-1 align-self-center">
+                                                                        <input data-repeater-delete type="button" class="btn btn-primary btn-block pr-1" value="Deletar"/>
+                                                                    </div>
+                                                                    <div class="col-md-12">
+                                            
+                                                                        <hr>
+                                                                    </div>
+                                                                </div>
                                                             </div>
+                                                            <input data-repeater-create type="button" class="btn btn-success mt-3" value="Add"/>
                                                         </form>
                                                     </div>
                                                     <div class="modal-footer">
@@ -259,4 +308,10 @@
 
         $("[data-tt=tooltip]").tooltip();
     </script>
+@endsection
+
+@section('js')
+<script src="{{asset('panel/libs/jquery.repeater/jquery.repeater.min.js')}}"></script>
+
+<script src="{{asset('panel/js/pages/form-repeater.int.js')}}"></script>
 @endsection

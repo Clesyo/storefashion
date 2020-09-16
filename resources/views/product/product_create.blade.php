@@ -199,10 +199,12 @@
                         </div>
 
                         <div class="col-md-4">
-                            <label for="">Imagem</label>
-                            <input type="file"  name="image" multiple>
-                            
+                            <div class="form-group">
+                                <label for="">Imagem</label><br>
+                                <input type="file"  name="image" multiple>
+                            </div>
                         </div>
+                            
                         <div class="col-md-1 align-self-center">
                             <input data-repeater-delete type="button" class="btn btn-primary btn-block pr-1" value="Deletar"/>
                         </div>

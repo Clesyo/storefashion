@@ -29,13 +29,7 @@ class CreateProductsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('image_products', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('path');
-            $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
-            $table->timestamps();
-        });
+        
     }
 
     /**
@@ -45,7 +39,6 @@ class CreateProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('image_products');
         Schema::dropIfExists('products');
     }
 }

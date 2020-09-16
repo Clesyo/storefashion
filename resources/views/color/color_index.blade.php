@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="">Selecione a cor*</label>
+                                    <label>Selecione a cor*</label>
                                     <div class="input-group colorpicker-default" title="Using format option">
                                         <input type="text" class="form-control input-lg" name="code_color" value="#4667cc"/>
                                         <span class="input-group-append">
@@ -153,7 +153,11 @@
 
     </script>
 @endif
-{{-- 
+
+<script>
+    $('.colorpicker-default').colorpicker();
+</script>
+{{--
 <script>
     function deleteConfirmation(id) {
         swal({
@@ -172,14 +176,14 @@
             console.log(e.value);
             if (e.value === true) {
                 var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
-    
+
                 $.ajax({
                     type: 'POST',
                     url: "{{url('orcamento/delete')}}/" + id,
                     data: {_token: CSRF_TOKEN},
                     dataType: 'JSON',
                     success: function (results) {
-    
+
                         if (results.success === true) {
                             swal("Concluído!", results.message, "success").then(function(){
                                 location.reload(true);
@@ -189,11 +193,11 @@
                         }
                     }
                 });
-    
+
             } else {
                 e.dismiss;
             }
-    
+
         }, function (dismiss) {
             return false;
         })
@@ -208,4 +212,5 @@
 <script src="{{ asset('panel/libs/bootstrap-touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
 <script src="{{ asset('panel/libs/bootstrap-maxlength/bootstrap-maxlength.min.js')}}"></script> --}}
 <!-- form advanced init -->
+<script src="{{ asset('panel/js/pages/form-advanced.init.js')}}"></script>
 @endsection

@@ -138,12 +138,12 @@
                                 <tbody>
                                     @foreach ($categories as $category)
 
-                                    @endforeach
                                     <tr>
                                         <td>{{ $category->id }}</td>
                                         <td>{{ $category->name }}</td>
                                         <td></td>
                                     </tr>
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>

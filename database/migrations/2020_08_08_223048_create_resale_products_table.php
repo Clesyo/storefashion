@@ -27,7 +27,13 @@ class CreateResaleProductsTable extends Migration
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->timestamps();
         });
-      
+        Schema::create('image_products', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('path');
+            $table->unsignedBigInteger('resale_products_id');
+            $table->foreign('resale_products_id')->references('id')->on('resale_products')->onDelete('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -37,6 +43,7 @@ class CreateResaleProductsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('image_products');
         Schema::dropIfExists('resale_products');
     }
 }

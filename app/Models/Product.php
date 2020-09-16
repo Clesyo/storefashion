@@ -10,13 +10,8 @@ class Product extends Model
     protected $fillable = ['description','price','price_promotion','promotion',
     'brand_id','company_id','available','launch','showcase','status'];
 
-    public function images()
+    public function resales()
     {
-        return $this->hasMany(ImageProduct::class);
-    }
-
-    public function resale()
-    {
-        return $this->hasOne(ResaleProduct::class);
+        return $this->hasMany(ResaleProduct::class);
     }
 }

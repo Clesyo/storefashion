@@ -15,8 +15,8 @@ class ResaleProduct extends Model
         return $this->belongsTo(Product::class);
     }
 
-    public function detail()
+    public function image_product()
     {
-        return $this->hasOne(ProductDetail::class);
+        return $this->hasMany(ImageProduct::class);
     }
 }
