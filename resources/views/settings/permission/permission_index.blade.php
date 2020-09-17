@@ -61,7 +61,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="">Nome da permission*</label>
+                                    <label for="">Nome da permissão*</label>
                                     <input type="text" name="name" class="form-control">
                                 </div>
                             </div>
@@ -101,7 +101,16 @@
                                     <td>{{ $permission->title }}</td>
                                     <td>{{ $permission->name }}</td>
                                     <td></td>
-                                    <td></td>
+                                    <td>
+                                        <ul class="list-inline font-size-20 contact-links mb-0">
+                                            <li class="list-inline-item px-2">
+                                                <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Message"><i class="mdi mdi-eye"></i></a>
+                                            </li>
+                                            <li class="list-inline-item px-2">
+                                                <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Profile"><i class="mdi mdi-trash-can-outline"></i></a>
+                                            </li>
+                                        </ul>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
