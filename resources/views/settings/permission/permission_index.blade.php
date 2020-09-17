@@ -104,10 +104,29 @@
                                     <td>
                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                             <li class="list-inline-item px-2">
-                                                <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Message"><i class="mdi mdi-eye"></i></a>
+                                                @if ($permission->status == 1)
+                                                    <a href="{{ url('settings/permission/activi', []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Inativar"
+                                                    onclick="event.preventDefault(); document.getElementById('form-activi-{{$permission->id}}').submit();"><i class="mdi mdi-eye-off"></i></a>
+                                                    <form action="{{ url('settings/permission/activi') }}" method="post" id="form-activi-{{$permission->id}}">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $permission->id }}">
+                                                        <input type="hidden" name="status" value="{{ $permission->status }}">
+                                                    </form>
+                                                @else
+                                                    <a href="{{ url('settings/permission/activi', []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ativar"
+                                                    onclick="event.preventDefault(); document.getElementById('form-activi-{{$permission->id}}').submit();"><i class="mdi mdi-eye"></i></a>
+                                                    <form action="{{ url('settings/permission/activi') }}" method="post" id="form-activi-{{$permission->id}}">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $permission->id }}">
+                                                        <input type="hidden" name="status" value="{{ $permission->status }}">
+                                                    </form>
+                                                @endif
+
+
                                             </li>
                                             <li class="list-inline-item px-2">
-                                                <a href="" data-toggle="tooltip" data-placement="top" title="" data-original-title="Profile"><i class="mdi mdi-trash-can-outline"></i></a>
+                                                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"
+                                                onclick="deleteConfirmation({{$permission->id}})"><i class="mdi mdi-trash-can-outline"></i></a>
                                             </li>
                                         </ul>
                                     </td>
@@ -168,4 +187,54 @@
 
     </script>
 @endif
+
+<script>
+    function deleteConfirmation(id) {
+        swal.fire({
+            title: "Excluir?",
+            text: "Deseja mesmo excluir!",
+            type: "warning",
+            /* buttons: {
+                cancel: true,
+                confirm: "Confirm",
+            }, */
+            showCancelButton: !0,
+            confirmButtonText: "Sim, exclua!",
+            cancelButtonText: "Não, cancele!",
+            reverseButtons: !0
+        }).then(function (e) {
+            console.log(e.value);
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{url('orcamento/delete')}}/" + id,
+                    data: {_token: CSRF_TOKEN},
+                    dataType: 'JSON',
+                    success: function (results) {
+
+                        if (results.success === true) {
+                            swal.fire("Concluído!", results.message, "success").then(function(){
+                                location.reload(true);
+                            });
+                        } else {
+                            swal.fire("Error!", results.message, "error");
+                        }
+                    }
+                });
+
+            } else {
+                e.dismiss;
+            }
+
+        }, function (dismiss) {
+            return false;
+        })
+    }
+    </script>
+@endsection
+
+@section('js')
+<script src="{{ asset('panel/libs/sweetalert2/sweetalert2.min.js')}}"></script>
 @endsection

@@ -33,4 +33,36 @@ class PermissionController extends Controller
         }
         return redirect()->back()->with($notification);
     }
+
+    public function activiti(Request $req)
+    {
+        $permission = Permission::find($req->input('id'));
+
+        if($req->input('status') == 1){
+            $permission->status = 0;
+        }else{
+            $permission->status = 1;
+        }
+
+        return redirect()->back();
+    }
+
+    public function destroy($id)
+    {
+        $permission = Permission::find($id)->delete();
+
+        if($permission == 1){
+            $success = true;
+            $message = 'Permissão excluída com sucesso.';
+        }else{
+            $success = true;
+            $message = 'Erro ao excluir, tente novamente.';
+
+        }
+
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
+    }
 }

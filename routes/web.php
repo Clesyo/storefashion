@@ -47,6 +47,8 @@ Route::post('detalhe/store', 'ProductDetailController@store');
 
 Route::get('settings/permission','PermissionController@index');
 Route::post('settings/permission/store','PermissionController@store');
+Route::post('settings/permission/delete/{id}','PermissionController@destroy');
+Route::post('settings/permission/activi','PermissionController@activiti');
 
 Route::get('settings/role','RoleController@index');
 

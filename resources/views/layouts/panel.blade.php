@@ -12,6 +12,8 @@
     <!-- Google Fonts -->
     <link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700%7COswald:300,400,500,600,700" rel="stylesheet">
 
+     <!-- Sweet Alert-->
+    <link href="{{ asset('panel/libs/sweetalert2/sweetalert2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('panel/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('panel/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet" type="text/css">
 
