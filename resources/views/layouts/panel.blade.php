@@ -545,8 +545,6 @@
    <!-- toastr init -->
    <script src="{{ asset('panel/js/pages/toastr.init.js')}}"></script>
 
-    <!-- form advanced init -->
-    <script src="{{ asset('panel/js/pages/form-advanced.init.js')}}"></script>
     <!-- App js -->
     <script src="{{ asset('panel/js/app.js')}}"></script>
 

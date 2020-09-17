@@ -138,7 +138,7 @@
                                                     <div class="modal-body">
                                                         <form action="{{ url('estoque/store', []) }}" method="post" id="form-submit-stoke-{{$product->id}}">
                                                             @csrf
-                                                            <div data-repeater-list="resale">
+                                                            <div data-repeater-list="resal">
                                                                 <div data-repeater-item class="row mt-3">
                                                                     <div class="col-sm-1">
                                                                         <div class="form-group">
@@ -146,7 +146,7 @@
                                                                             <input name="quantity_available" type="text" class="form-control">
                                                                         </div>
                                                                     </div>
-                                            
+
                                                                     <div class="col-sm-1">
                                                                         <div class="form-group">
                                                                             <label for="">Tamanho</label>
@@ -170,19 +170,19 @@
                                                                             </select>
                                                                         </div>
                                                                     </div>
-                                            
+
                                                                     <div class="col-md-4">
                                                                         <div class="form-group">
                                                                             <label for="">Imagem</label><br>
                                                                             <input type="file"  name="image" multiple>
                                                                         </div>
                                                                     </div>
-                                                                        
+
                                                                     <div class="col-md-1 align-self-center">
                                                                         <input data-repeater-delete type="button" class="btn btn-primary btn-block pr-1" value="Deletar"/>
                                                                     </div>
                                                                     <div class="col-md-12">
-                                            
+
                                                                         <hr>
                                                                     </div>
                                                                 </div>
