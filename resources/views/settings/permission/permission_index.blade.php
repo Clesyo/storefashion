@@ -121,8 +121,6 @@
                                                         <input type="hidden" name="status" value="{{ $permission->status }}">
                                                     </form>
                                                 @endif
-
-
                                             </li>
                                             <li class="list-inline-item px-2">
                                                 <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"
