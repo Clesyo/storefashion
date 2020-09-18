@@ -51,5 +51,7 @@ Route::post('settings/permission/delete/{id}','PermissionController@destroy');
 Route::post('settings/permission/activi','PermissionController@activiti');
 
 Route::get('settings/role','RoleController@index');
+Route::get('settings/role/new','RoleController@create');
+Route::post('settings/role/delete/{id}','RoleController@destroy');
 
 Route::get('settings/user','UserController@index');

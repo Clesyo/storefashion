@@ -90,6 +90,7 @@
                                 <th scope="col">Titulo</th>
                                 <th scope="col">Nome</th>
                                 <th scope="col">Funções</th>
+                                <th scope="col">Situação</th>
                                 <th scope="col">Ação</th>
                             </tr>
                         </thead>
@@ -101,6 +102,14 @@
                                     <td>{{ $permission->title }}</td>
                                     <td>{{ $permission->name }}</td>
                                     <td></td>
+                                    <td>
+                                        @if ($permission->status == 1)
+                                            <span class="badge badge-success badge-pill font-size-11 px-2"> <strong>Ativo</strong> </span>
+                                        @else
+                                            <span class="badge badge-danger badge-pill font-size-11 px-2"> <strong>Inativo</strong> </span>
+
+                                        @endif
+                                    </td>
                                     <td>
                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                             <li class="list-inline-item px-2">
@@ -207,7 +216,7 @@
 
                 $.ajax({
                     type: 'POST',
-                    url: "{{url('orcamento/delete')}}/" + id,
+                    url: "{{url('settings/permission/delete')}}/" + id,
                     data: {_token: CSRF_TOKEN},
                     dataType: 'JSON',
                     success: function (results) {

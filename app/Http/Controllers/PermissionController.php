@@ -44,6 +44,8 @@ class PermissionController extends Controller
             $permission->status = 1;
         }
 
+        $permission->save();
+
         return redirect()->back();
     }
 
