@@ -34,6 +34,12 @@
 </div>
 <!-- end page title -->
 
+<div class="row justify-content-between">
+    <div class="col-sm-4 col-3"></div>
+    <div class="col-sm-3 col-9 text-right mb-2 px-3">
+        <a href="{{ url('settings/role/new', []) }}" class="btn btn-primary btn-rounded" style="font-weight: bold"><i class="bx bx-plus-circle font-size-16 align-middle mr-2"></i>  Novo</a>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-lg-12">
@@ -44,16 +50,31 @@
                         <thead class="thead-light">
                             <tr>
                                 <th scope="col" style="width: 70px;">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Tags</th>
-                                <th scope="col">Projects</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Situação</th>
+                                <th scope="col">Ação</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                            </tr>
+                            @foreach ($roles as $role)
+                                <tr>
+                                    <td>{{ $role->id }}</td>
+                                    <td>{{ $role->name }}</td>
+                                    <td></td>
+                                    <td>
+                                        <ul class="list-inline font-size-20 contact-links mb-0">
+                                            <li class="list-inline-item px-2">
+                                                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Ativar"
+                                                onclick=""><i class="mdi mdi-eye"></i></a>
+                                            </li>
+                                            <li class="list-inline-item px-2">
+                                                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"
+                                                onclick="deleteConfirmation({{$permission->id}})"><i class="mdi mdi-trash-can-outline"></i></a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -61,4 +82,103 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('scripts')
+@if(Session::has('message'))
+    <script>
+        var message = "{{Session::get('message')}}";
+        var title = "{{Session::get('title')}}";
+        var alert_type = "{{Session::get('alert_type')}}";
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": 300,
+            "hideDuration": 1000,
+            "timeOut": 5000,
+            "extendedTimeOut": 1000,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        switch (alert_type) {
+            case '1':
+            toastr.success(message,title);
+                break;
+            case '2':
+            toastr.error(message,title);
+                break;
+            case '3':
+            toastr.warning(message,title);
+                break;
+            case '4':
+            toastr.info(message,title);
+                break;
+
+            default:
+                break;
+        }
+
+
+    </script>
+@endif
+
+<script>
+    function deleteConfirmation(id) {
+        swal.fire({
+            title: "Excluir?",
+            text: "Deseja mesmo excluir!",
+            type: "warning",
+            /* buttons: {
+                cancel: true,
+                confirm: "Confirm",
+            }, */
+            showCancelButton: !0,
+            confirmButtonText: "Sim, exclua!",
+            cancelButtonText: "Não, cancele!",
+            reverseButtons: !0
+        }).then(function (e) {
+            console.log(e.value);
+            if (e.value === true) {
+                var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+                $.ajax({
+                    type: 'POST',
+                    url: "{{url('settings/role/delete')}}/" + id,
+                    data: {_token: CSRF_TOKEN},
+                    dataType: 'JSON',
+                    success: function (results) {
+
+                        if (results.success === true) {
+                            swal.fire("Concluído!", results.message, "success")
+                            .then(function(){
+                                location.reload(true);
+                            });
+                        } else {
+                            swal.fire("Error!", results.message, "error");
+                        }
+                    }
+                });
+
+            } else {
+                e.dismiss;
+            }
+
+        }, function (dismiss) {
+            return false;
+        })
+    }
+    </script>
+@endsection
+
+@section('js')
+<script src="{{ asset('panel/libs/sweetalert2/sweetalert2.min.js')}}"></script>
 @endsection
