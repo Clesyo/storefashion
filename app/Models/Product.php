@@ -14,4 +14,9 @@ class Product extends Model
     {
         return $this->hasMany(ResaleProduct::class);
     }
+
+    public function company()
+    {
+        return $this->belongsTo(Company::class);
+    }
 }

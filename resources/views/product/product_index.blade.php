@@ -136,14 +136,16 @@
                                                         </button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form action="{{ url('estoque/store', []) }}" method="post" id="form-submit-stoke-{{$product->id}}">
+                                                        <form class="repeater" action="{{ url('estoque/store', []) }}" method="post" id="form-submit-stoke-{{$product->id}}" enctype="multipart/form-data">
                                                             @csrf
+                                                            <input type="hidden" name="product_id" value="{{ $product->id }}">
                                                             <div data-repeater-list="resal">
                                                                 <div data-repeater-item class="row mt-3">
                                                                     <div class="col-sm-1">
                                                                         <div class="form-group">
                                                                             <label for="available">Disponivel</label>
                                                                             <input name="quantity_available" type="text" class="form-control">
+                                                                            
                                                                         </div>
                                                                     </div>
 
