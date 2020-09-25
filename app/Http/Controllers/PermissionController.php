@@ -34,7 +34,7 @@ class PermissionController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function activiti(Request $req)
+    public function active(Request $req)
     {
         $permission = Permission::find($req->input('id'));
 

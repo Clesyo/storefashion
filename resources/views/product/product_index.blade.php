@@ -56,7 +56,6 @@
                         <tr>
                             <th scope="col" style="width: 100px">#</th>
                             <th scope="col">Produto</th>
-                            <th scope="col">Tamanhos</th>
                             <th scope="col">Opções</th>
                             <th scope="col">Status</th>
                             <th scope="col">Action</th>
@@ -83,18 +82,6 @@
                                     @endif
 
 
-                                </td>
-                                <td>
-                                    @if ($product->resales != null)
-                                        @foreach ($product->resales as $resale)
-                                            @if ($resale->quantity_available > 0)
-                                                {{ $resale->size }},
-                                            @endif
-
-                                        @endforeach
-                                    @else
-                                        {{ __('0') }}
-                                    @endif
                                 </td>
                                 <td>
                                     <p class="text-muted mb-0">

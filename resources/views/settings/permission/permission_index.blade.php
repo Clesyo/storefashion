@@ -114,17 +114,17 @@
                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                             <li class="list-inline-item px-2">
                                                 @if ($permission->status == 1)
-                                                    <a href="{{ url('settings/permission/activi', []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Inativar"
-                                                    onclick="event.preventDefault(); document.getElementById('form-activi-{{$permission->id}}').submit();"><i class="mdi mdi-eye-off"></i></a>
-                                                    <form action="{{ url('settings/permission/activi') }}" method="post" id="form-activi-{{$permission->id}}">
+                                                    <a href="{{ url('settings/permission/active', []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Inativar"
+                                                    onclick="event.preventDefault(); document.getElementById('form-active-{{$permission->id}}').submit();"><i class="mdi mdi-eye-off"></i></a>
+                                                    <form action="{{ url('settings/permission/active') }}" method="post" id="form-active-{{$permission->id}}">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $permission->id }}">
                                                         <input type="hidden" name="status" value="{{ $permission->status }}">
                                                     </form>
                                                 @else
-                                                    <a href="{{ url('settings/permission/activi', []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ativar"
-                                                    onclick="event.preventDefault(); document.getElementById('form-activi-{{$permission->id}}').submit();"><i class="mdi mdi-eye"></i></a>
-                                                    <form action="{{ url('settings/permission/activi') }}" method="post" id="form-activi-{{$permission->id}}">
+                                                    <a href="{{ url('settings/permission/active', []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ativar"
+                                                    onclick="event.preventDefault(); document.getElementById('form-active-{{$permission->id}}').submit();"><i class="mdi mdi-eye"></i></a>
+                                                    <form action="{{ url('settings/permission/active') }}" method="post" id="form-active-{{$permission->id}}">
                                                         @csrf
                                                         <input type="hidden" name="id" value="{{ $permission->id }}">
                                                         <input type="hidden" name="status" value="{{ $permission->status }}">

@@ -48,10 +48,14 @@ Route::post('detalhe/store', 'ProductDetailController@store');
 Route::get('settings/permission','PermissionController@index');
 Route::post('settings/permission/store','PermissionController@store');
 Route::post('settings/permission/delete/{id}','PermissionController@destroy');
-Route::post('settings/permission/activi','PermissionController@activiti');
+Route::post('settings/permission/active','PermissionController@active');
 
 Route::get('settings/role','RoleController@index');
 Route::get('settings/role/new','RoleController@create');
 Route::post('settings/role/delete/{id}','RoleController@destroy');
+Route::post('settings/role/store','RoleController@store');
+Route::post('settings/role/active','RoleController@active');
+Route::get('settings/role/edit/{id}','RoleController@edit');
+Route::patch('settings/role/update/{id}','RoleController@update');
 
 Route::get('settings/user','UserController@index');

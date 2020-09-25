@@ -51,6 +51,7 @@
                             <tr>
                                 <th scope="col" style="width: 70px;">#</th>
                                 <th scope="col">Nome</th>
+                                <th scope="col">Permissões associadas</th>
                                 <th scope="col">Situação</th>
                                 <th scope="col">Ação</th>
                             </tr>
@@ -60,16 +61,47 @@
                                 <tr>
                                     <td>{{ $role->id }}</td>
                                     <td>{{ $role->name }}</td>
-                                    <td></td>
+                                    <td>
+                                        @foreach ($role->permissions as $permission)
+                                            <span class="badge badge-pill badge-soft-dark px-2 py-1">{{ $permission->name }}</span>
+                                        @endforeach
+                                    </td>
+                                    <td>
+                                        @if ($role->status == 1)
+                                            <span class="badge badge-pill badge-success px-2 py-1 font-size-12">{{ __('Ativo') }}</span>
+                                        @else
+                                            <span class="badge badge-pill badge-danger px-2 py-1 font-size-12">{{ __('Inativo') }}</span>
+                                        @endif
+                                    </td>
                                     <td>
                                         <ul class="list-inline font-size-20 contact-links mb-0">
                                             <li class="list-inline-item px-2">
-                                                <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Ativar"
-                                                onclick=""><i class="mdi mdi-eye"></i></a>
+                                                @if ($role->status == 1)
+                                                        <a href="{{ url('settings/role/active', []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Inativar"
+                                                        onclick="event.preventDefault(); document.getElementById('form-active-{{$role->id}}').submit();"><i class="mdi mdi-eye-off"></i></a>
+                                                    <form action="{{ url('settings/role/active') }}" method="post" id="form-active-{{$role->id}}">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $role->id }}">
+                                                        <input type="hidden" name="status" value="{{ $role->status }}">
+                                                    </form>
+                                                @else
+                                                        <a href="{{ url('settings/role/active', []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Ativar"
+                                                        onclick="event.preventDefault(); document.getElementById('form-active-{{$role->id}}').submit();"><i class="mdi mdi-eye"></i></a>
+                                                    
+                                                    <form action="{{ url('settings/role/active') }}" method="post" id="form-active-{{$role->id}}">
+                                                        @csrf
+                                                        <input type="hidden" name="id" value="{{ $role->id }}">
+                                                        <input type="hidden" name="status" value="{{ $role->status }}">
+                                                    </form>
+                                                @endif
+                                            </li>
+                                            <li class="list-inline-item px-2">
+                                                <a href="{{ url('settings/role/edit/'.$role->id, []) }}" data-toggle="tooltip" data-placement="top" title="" data-original-title="Editar"
+                                                onclick=""><i class="mdi mdi-square-edit-outline"></i></a>
                                             </li>
                                             <li class="list-inline-item px-2">
                                                 <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"
-                                                onclick="deleteConfirmation({{$permission->id}})"><i class="mdi mdi-trash-can-outline"></i></a>
+                                                onclick="deleteConfirmation({{$role->id}})"><i class="mdi mdi-trash-can-outline"></i></a>
                                             </li>
                                         </ul>
                                     </td>
