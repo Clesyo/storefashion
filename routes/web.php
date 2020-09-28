@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\ActiveUser;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,6 +18,14 @@ Route::get('/', function () {
     return view('main');
 });
 
+Route::get('active-user/{token}', function ($token) {
+    return view('page-active',['token'=>$token]);
+});
+
+Route::get('teste-email', function (){
+    return new ActiveUser();
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -32,7 +41,6 @@ Route::post('cores/store', 'ColorController@store');
 
 Route::get('marcas', 'BrandController@index');
 Route::post('marcas/store', 'BrandController@store');
-
 
 
 Route::get('produtos', 'ProductController@index');
@@ -59,3 +67,4 @@ Route::get('settings/role/edit/{id}','RoleController@edit');
 Route::patch('settings/role/update/{id}','RoleController@update');
 
 Route::get('settings/user','UserController@index');
+Route::post('settings/user/include-role','UserController@includeRole');

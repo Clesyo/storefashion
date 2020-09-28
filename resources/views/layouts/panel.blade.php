@@ -485,7 +485,7 @@
                     </li>
                     <li class="menu-title">Controle de Usuários</li>
                     <li>
-                        <a href="calendar.html" class=" waves-effect">
+                        <a href="{{ url('settings/user', []) }}" class=" waves-effect">
                             <i class="bx bx-user"></i>
                             <span>Usuários</span>
                         </a>

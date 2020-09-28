@@ -228,6 +228,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Keygen' => Keygen\Keygen::class,
         'Color' => App\Models\Color::class,
+        'Role' => App\Models\Role::class,
     ],
 
 ];
