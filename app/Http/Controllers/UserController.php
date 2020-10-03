@@ -31,4 +31,16 @@ class UserController extends Controller
 
         return redirect('settings/user')->with($notification);
     }
+
+    public function activeUser(Request $req)
+    {
+        $user = User::find($req->token);
+
+        if ($user->confirmed == 0) {
+            $user->confirmed = 1;
+            return redirect('active-user-confirmed');
+        }
+
+        return redirect('');
+    }
 }

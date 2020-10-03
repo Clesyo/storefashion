@@ -22,8 +22,21 @@ Route::get('active-user/{token}', function ($token) {
     return view('page-active',['token'=>$token]);
 });
 
+/* Route::get('active-user', function () {
+    return view('page-active');
+}); */
+Route::get('active-user-confirmed', function () {
+    return view('page-confirmed-active');
+});
+
+Route::post('active', 'UserController@activeUser');
+
 Route::get('teste-email', function (){
-    return new ActiveUser();
+    $datas = [
+        'name' => 'Clesyo Silva',
+        'token' => 'ST-ksnAS98s'
+    ];
+    return new ActiveUser($datas);
 });
 
 Auth::routes();

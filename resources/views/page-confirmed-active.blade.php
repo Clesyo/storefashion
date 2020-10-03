@@ -41,16 +41,10 @@
                                 </div>
                             </div>
                         </div> --}}
-                        <h3 class="mt-5">Bem vindo ao Store Fashion</h3>
-                        <p>Por favor clique no botão abixo para ativar seu usuário.</p>
+                        <h3 class="mt-5">Seu acesso já está liberado.</h3>
+                        {{-- <p>Por favor clique no botão abixo para ativar seu usuário.</p> --}}
 
-                        <button href="{{ url('active-user-confirmed', []) }}" type="button" class="btn btn-primary btn-lg waves-effect waves-light"
-                        onclick="event.preventDefault(); document.getElementById('form-active-submit')->submit();">Ativar</button>
-
-                        <form action="{{ url('active', []) }}" method="post" id="form-active-submit">
-                            @csrf
-                            <input type="hidden" name="token" value="{{ $token }}">
-                        </form>
+                        <a href="{{ route('login') }}" class="btn btn-primary btn-lg waves-effect waves-light">Faça seu login</a>
                         
                         <!-- end row -->
                     </div>
