@@ -29,7 +29,8 @@ Route::get('active-user-confirmed', function () {
     return view('page-confirmed-active');
 });
 
-Route::post('active', 'UserController@activeUser');
+Route::post('active/{token}', 'UserController@activeUser');
+Route::post('resend-mail/{id}', 'UserController@resendMail');
 
 Route::get('teste-email', function (){
     $datas = [

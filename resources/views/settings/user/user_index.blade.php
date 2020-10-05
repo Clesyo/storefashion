@@ -101,6 +101,11 @@
                                             onclick=""><i class="mdi mdi-square-edit-outline"></i></a>
                                         </li>
                                         <li class="list-inline-item px-2">
+                                            <a type="button" data-toggle="tooltip" data-placement="top" title="" data-original-title="Reenviar email"
+                                            onclick="resendMail({{$user->id}});"><i class="mdi mdi-email-send-outline"></i></a>
+                                        </li>
+
+                                        <li class="list-inline-item px-2">
                                             <a href="#" data-rr="tooltip" data-placement="top" title="" data-original-title="Incluir função"
                                             onclick="" data-toggle="modal" data-target="#include-role-{{$user->id}}"><i class="mdi mdi-book-plus-multiple-outline"></i></a>
                                         </li>
@@ -159,6 +164,47 @@
 <script>
 
     $('[data-rr=tooltip]').tooltip();
+</script>
+
+<script>
+    function resendMail(id) {
+        toastr.options = {
+                "closeButton": false,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
+    
+            var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+
+            $.ajax({
+                type: 'POST',
+                url: "{{url('resend-mail')}}/" + id,
+                data: {_token: CSRF_TOKEN},
+                dataType: 'JSON',
+                success: function (results) {
+
+                    if (results.success === true) {
+                        //swal("Concluído!", results.message, "success")
+                        toastr.success(results.message,'Mensagem');
+                    } else {
+                        toastr.error(results.message, "Error!");
+                    }
+                }
+            });
+
+}
 </script>
 @endsection
 
