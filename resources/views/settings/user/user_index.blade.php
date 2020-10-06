@@ -195,11 +195,12 @@
                 dataType: 'JSON',
                 success: function (results) {
 
-                    if (results.success === true) {
-                        //swal("Concluído!", results.message, "success")
-                        toastr.success(results.message,'Mensagem');
-                    } else {
-                        toastr.error(results.message, "Error!");
+                    if (results.success === 1) {
+                        swal.fire("Aviso!", results.message, "info")
+                        // toastr.success(results.message,'Mensagem');
+                    } else if(results.success === 2){
+                        swal.fire("Concluído!", results.message, "success")
+                        // toastr.error(results.message, "Error!");
                     }
                 }
             });
@@ -212,4 +213,5 @@
 <script src="{{asset('panel/libs/select2/js/select2.min.js')}}"></script>
  <!-- form advanced init -->
  <script src="{{asset('panel/js/pages/form-advanced.init.js')}}"></script>
+ <script src="{{ asset('panel/libs/sweetalert2/sweetalert2.min.js')}}"></script>
 @endsection

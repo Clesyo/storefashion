@@ -59,11 +59,19 @@ class UserController extends Controller
     public function resendMail($id)
     {
         $user = User::find($id);
-        Mail::send(new ActiveUser($user));
+
+        if($user->confirmed == 1){
+            $success = 1;
+            $message = "Usuário já confirmado!";
+        }else{
+            Mail::send(new ActiveUser($user));
+            $success = 2;
+            $message = 'Email reenviado com sucesso.';
+        }
 
         return response()->json([
-            'success' => true,
-            'message' => 'Email reenviado.',
+            'success' => $success,
+            'message' => $message,
         ]);
 
     }

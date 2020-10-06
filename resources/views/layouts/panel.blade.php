@@ -18,6 +18,7 @@
     <link href="{{ asset('panel/libs/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css')}}" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" type="text/css" href="{{ asset('panel/libs/toastr/build/toastr.min.css')}}">
+    <link rel="stylesheet" href="{{ asset('panel/libs/sweetalert2/sweetalert2.min.css')}}"/>
 
     <!-- Bootstrap Css -->
     <link href="{{asset('panel/css/bootstrap.min.css')}}"  rel="stylesheet" type="text/css" />
