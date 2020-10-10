@@ -128,7 +128,7 @@
                                                                             <select class="select2 form-control" multiple="multiple" name="role_id[]" id="" style="width: 100%;">
                                                                                 <option disabled>Selecione...</option>
                                                                                 @foreach (Role::all() as $role)
-                                                                                    <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                                                                    <option value="{{ $role->id }}" @foreach($user->roles as $use_role) @if($use_role->id == $role->id ) selected @endif @endforeach>{{ $role->name }}</option>
                                                                                 @endforeach
                                                                             </select>
                                                                             <input type="hidden" name="user_id" value="{{ $user->id }}">
@@ -161,6 +161,51 @@
 @endsection
 
 @section('scripts')
+@if(Session::has('message'))
+    <script>
+        var message = "{{Session::get('message')}}";
+        var title = "{{Session::get('title')}}";
+        var alert_type = "{{Session::get('alert_type')}}";
+
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "positionClass": "toast-top-right",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": 300,
+            "hideDuration": 1000,
+            "timeOut": 5000,
+            "extendedTimeOut": 1000,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        switch (alert_type) {
+            case '1':
+            toastr.success(message,title);
+                break;
+            case '2':
+            toastr.error(message,title);
+                break;
+            case '3':
+            toastr.warning(message,title);
+                break;
+            case '4':
+            toastr.info(message,title);
+                break;
+
+            default:
+                break;
+        }
+
+
+    </script>
+@endif
 <script>
 
     $('[data-rr=tooltip]').tooltip();

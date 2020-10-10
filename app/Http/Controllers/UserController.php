@@ -24,7 +24,7 @@ class UserController extends Controller
         // dd($req->all());
         $user = User::find($req->user_id);
 
-        $user->roles()->attach($req->role_id);
+        $user->roles()->sync($req->role_id);
         $notification = [
             'message' => 'Função incluida com sucesso.',
             'title' => 'Mensagem:',

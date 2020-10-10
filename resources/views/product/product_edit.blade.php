@@ -155,91 +155,13 @@
                         <button type="submit" class="btn btn-primary mr-1 waves-effect waves-light">Save Changes</button>
                         <button type="submit" class="btn btn-secondary waves-effect">Cancel</button>
                     </div> --}}
-                </div>
-        </div>
-
-        <div class="card">
-            <div class="card-body">
-                <h4 class="card-title">Inseir imagem</h4>
-                <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="customFile" name="image[]" multiple>
-                    <label class="custom-file-label" for="customFile">
-                        Escolher arquivo</label>
-                </div>
-            </div>
-        </div>
-
-        <div class="card">
-            <div class="card-body">
-
-                <h4 class="card-title">Estoque</h4>
-
-
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="available">Disponivel</label>
-                                <input id="available" name="resale[quantity_available]" value="{{ $product->resale->quantity_available }}" type="number" class="form-control">
-                            </div>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="form-group">
-                                <label for="accounting">Contábil</label>
-                                <input id="accounting" readonly name="resale[quantity_accounting]" value="{{ $product->resale->quantity_accounting }}" type="number" class="form-control">
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div> <!-- end card-->
-
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="card-title mb-3">Caracteristicas do produto</h4>
-
-                <div class="row">
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Tamanho</label>
-                            <input type="text" class="form-control" value="{{ $product->resale->detail->size }}" name="detail[size]" style="text-transform: uppercase">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Material</label>
-                            <input type="text" class="form-control" value="{{ $product->resale->detail->material }}" name="detail[material]">
-                        </div>
-                    </div>
-                    <div class="col-sm-4">
-                        <div class="form-group">
-                            <label for="">Cor</label>
-                            <select class="form-control select2" name="detail[color_id]">
-                                <option disabled>Selecione...</option>
-                                @foreach (Color::all() as $color)
-                                    <option value="{{ $color->id }}"
-                                    @if($product->resale->detail->color_id == $color->id) @endif>{{ $color->name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                {{-- <div class="summernote" ></div> --}}
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="form-group">
-                            <label for="">Informação adicional do produto</label>
-                            <textarea class="form-control" name="detail[additional_infor]" style="width: 100%; height: 10rem">{{ $product->resale->detail->additional_infor }}</textarea>
-                        </div>
-                    </div>
-                </div>
-
-
+                    
                 <div class="text-right my-4">
 
                     <button type="button" class="btn btn-primary mr-1 waves-effect waves-light"
                     onclick="event.preventDefault(); document.getElementById('form-submit').submit();">Gravar</button>
                 </div>
-            </div>
+                </div>
         </div>
     </div>
 </div>
