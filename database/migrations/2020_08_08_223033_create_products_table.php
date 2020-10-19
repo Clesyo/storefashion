@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->float('price', 8, 2);
             $table->float('price_promotion', 8, 2)->default(0.0);
             $table->boolean('promotion')->default(0);
+            $table->boolean('image_default')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
             $table->unsignedBigInteger('company_id');

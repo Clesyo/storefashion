@@ -15,7 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('main');
+    $title = 'Store Fashion - Sua loja virtual ';
+    $page = '';
+    return view('main', compact('title','page'));
 });
 
 Route::get('active-user/{token}', function ($token) {
@@ -44,6 +46,8 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('cart', 'ShoppingCartController@cart');
+
 Route::get('perfil', 'CompanyController@index');
 Route::post('company/store', 'CompanyController@store');
 
@@ -63,6 +67,9 @@ Route::get('produtos/edit/{id}', 'ProductController@edit');
 Route::post('produtos/store', 'ProductController@store');
 Route::post('produtos/vitrine/status', 'ProductController@alterStatusShowcase');
 Route::post('produtos/status', 'ProductController@alterStatusProduct');
+
+Route::get('produto','SiteController@productView');
+Route::get('produto-all','SiteController@productAll');
 
 Route::post('estoque/store', 'ResaleProductController@store');
 Route::post('detalhe/store', 'ProductDetailController@store');

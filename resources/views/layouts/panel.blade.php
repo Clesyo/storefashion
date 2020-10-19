@@ -319,7 +319,7 @@
                             <a class="dropdown-item" href="#"><i class="bx bx-lock-open font-size-16 align-middle mr-1"></i> Lock screen</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item text-danger" href="{{ route('logout') }}"
-                            onclick="event.preventDefault(); document.getElementById('form-logout').submit();"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Logout</a>
+                            onclick="event.preventDefault(); document.getElementById('form-logout').submit();"><i class="bx bx-power-off font-size-16 align-middle mr-1 text-danger"></i> Sair</a>
                             <form action="{{route('logout')}}" id="form-logout" method="post">
                                 @csrf
                             </form>
@@ -343,6 +343,12 @@
                     <!-- Left Menu Start -->
                     <ul class="metismenu list-unstyled" id="side-menu">
                         <li class="menu-title">Menu</li>
+                        <li>
+                            <a href="{{ url('', []) }}" class=" waves-effect">
+                                <i class="mdi mdi-web"></i>
+                                <span>Site</span>
+                            </a>
+                        </li>
 
                         <li>
                             <a href="javascript: void(0);" class="waves-effect">

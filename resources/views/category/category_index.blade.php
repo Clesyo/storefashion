@@ -132,17 +132,31 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Categoria</th>
+                                        <th>Subcategoria</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @foreach ($categories as $category)
-
-                                    <tr>
-                                        <td>{{ $category->id }}</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td></td>
-                                    </tr>
+                                        @if ($category->parent == null)
+                                            <tr>
+                                                <td>{{ $category->id }}</td>
+                                                <td>{{ $category->name }}</td>
+                                                <td>
+                                                    @foreach ($category->childrens as $subcategory)
+                                                        <span class="badge badge-pill badge-soft-dark px-2 py-1 font-size-12">{{ $subcategory->name }}</span>
+                                                    @endforeach
+                                                </td>
+                                                <td>
+                                                    <ul class="list-inline font-size-20 contact-links mb-0">
+                                                        <li class="list-inline-item px-2">
+                                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"
+                                                            ><i class="mdi mdi-trash-can-outline"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        @endif
                                     @endforeach
                                 </tbody>
                             </table>
@@ -159,7 +173,29 @@
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
-                                <tbody></tbody>
+                                <tbody>
+                                    @foreach ($categories as $category)
+                                        @if ($category->parent != null)
+                                            <tr>
+                                                <td>{{ $category->id }}</td>
+                                                <td>{{ $category->name }}</td>
+                                                <td>
+                                                    <span class="badge badge-pill badge-soft-dark px-2 py-1 font-size-12">
+                                                    {{ $category->parents->name }}
+                                                    </span>
+                                                </td>
+                                                <td>
+                                                    <ul class="list-inline font-size-20 contact-links mb-0">
+                                                        <li class="list-inline-item px-2">
+                                                            <a data-toggle="tooltip" data-placement="top" title="" data-original-title="Excluir"
+                                                            ><i class="mdi mdi-trash-can-outline"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
+                                </tbody>
                             </table>
                         </div>
                     </div>

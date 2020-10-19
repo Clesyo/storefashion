@@ -229,6 +229,8 @@ return [
         'Keygen' => Keygen\Keygen::class,
         'Color' => App\Models\Color::class,
         'Role' => App\Models\Role::class,
+        'Category' => App\Models\Category::class,
+        'Product' => App\Models\Product::class,
     ],
 
 ];

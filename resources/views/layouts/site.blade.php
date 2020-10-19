@@ -2,7 +2,8 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <title>Store Fashion - Sua loja virtual</title>
+        {{-- <title>Store Fashion - Sua loja virtual</title> --}}
+        <title>@yield('title')</title>
         <meta name="description" content="Store Fashion - Sua loja virtual">
 
         <!--[if IE]> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <![endif]-->
@@ -26,7 +27,7 @@
         <div id="wrapper">
             <header class="header sticky-header">
                 <div class="container">
-                    <a href="index.html" class="site-logo" title="Shopo - eCommerce Template">
+                    <a href="{{ url('', []) }}" class="site-logo" title="Shopo - eCommerce Template">
                         <img src="{{asset('site/images/logo.png')}}" alt="Logo">
                         <span class="sr-only">Shopo - eCommerce Template</span>
                     </a>
@@ -62,7 +63,7 @@
                         <form action="#">
                             <div class="dropdown search-dropdown">
                                 <a class="dropdown-toggle" href="#" data-toggle="dropdown" role="button" aria-expanded="false">
-                                   All Category
+                                   Todas Categorias
                                     <i class="fa fa-caret-down"></i>
                                 </a>
                                 <ul class="dropdown-menu">
@@ -72,14 +73,14 @@
                                     <li><a href="#">Equipments</a></li>
                                 </ul>
                             </div><!-- End .dropddown -->
-                            <input type="search" class="form-control" placeholder="Search" required>
+                            <input type="search" class="form-control" placeholder="Buscar" required>
                             <button type="submit" title="Search" class="btn"><i class="fa fa-search"></i></button>
                         </form>
                     </div><!-- End .search-form-container -->
 
                     <ul class="top-links">
-                        <li><a href="signin.html">Sign In</a></li>
-                        <li><a href="cart.html">Cart</a></li>
+                        <li><a href="signin.html">Entrar</a></li>
+                        <li><a href="{{ url('cart', []) }}">Carrinho</a></li>
                     </ul>
 
                     <div class="dropdown cart-dropdown">
@@ -91,7 +92,7 @@
                             <i class="fa fa-caret-down"></i>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
-                            <p class="dropdown-cart-info">You have 2 products in your cart.</p>
+                            <p class="dropdown-cart-info">Você tem 2 produtos em seu carrinho.</p>
                             <div class="dropdown-menu-wrapper">
                                 <div class="product">
                                     <figure class="product-image-container">
@@ -130,7 +131,7 @@
 
                             <div class="cart-dropdowm-action">
                                 <div class="dropdowm-cart-total"><span>TOTAL:</span> $209.00</div>
-                                <a href="checkout.html" class="btn btn-primary">Checkout</a>
+                                <a href="checkout.html" class="btn btn-primary">Finalizar</a>
                             </div><!-- End .cart-dropdown-action -->
                         </div><!-- End .dropdown-menu -->
                     </div><!-- End .cart-dropddown -->
@@ -152,7 +153,7 @@
                     </div><!-- End .sidemenu-header -->
 
                     <ul class="metismenu">
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="{{ url('', []) }}">Home</a></li>
                         <li>
                             <a href="#" aria-expanded="false">Pages <span class="sidemenu-icon"></span></a>
                             <ul aria-expanded="false" class="collapse">
@@ -188,7 +189,11 @@
                                 <li><a href="single.html">blog Post</a></li>
                             </ul>
                         </li>
+                        @auth
+                        <li><a href="{{ route('home') }}">Painel Adm</a></li>
+                        @else
                         <li><a href="{{ route('login') }}">Área Restrita</a></li>
+                        @endauth
 
                     </ul>
                 </div><!-- End .sidemenu-wrapper -->
@@ -196,7 +201,122 @@
             <div class="sidemenu-overlay"></div><!-- End .sidemenu-overlay -->
 
             <div class="main">
-                @yield('content')
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-md-9 col-md-push-3">
+                            @yield('content')
+                        </div><!-- End .col-md-9 -->
+
+                        <aside class="col-md-3 col-md-pull-9 sidebar sidebar-shop">
+                            <div class="widget widget-box widget-shop-category active">
+                                <h3 class="widget-title">Categoria <a href="#" class="btn-filter" role="button">Filtro<i class="fa fa-caret-down"></i></a></h3>
+                
+                                <ul class="shop-category-list accordion">
+                                    @foreach (Category::all() as $category)
+                                        @if ($category->parent == null &&  count($category->childrens) == 0)
+                                            <li>
+                                                <a href="#">{{ $category->name }}</a>
+                                            </li>
+                                        @endif
+                                        @if ($category->parent == null && count($category->childrens) > 0)
+                                            <li>
+                                                <a href="#">{{ $category->name }}</a>
+                                                <button class="accordion-btn collapsed" type="button" data-toggle="collapse" data-target="#accordion-ul-{{$category->id}}" aria-expanded="false" aria-controls="accordion-ul-{{$category->id}}"><span class="accordion-icon"></span></button>
+                                                <ul class="collapse" id="accordion-ul-{{$category->id}}" aria-expanded="false">
+                                                    @foreach ($category->childrens as $subcategory)
+                                                        <li><a href="#"><i class="fa fa-caret-right"></i>{{ $subcategory->name }}</a></li>
+                                                        {{-- <li><a href="category.html"><i class="fa fa-caret-right"></i>Men Clothes</a></li>
+                                                        <li><a href="category.html"><i class="fa fa-caret-right"></i>Shoes</a></li> --}}
+                                                    @endforeach
+                                                </ul>
+                                            </li>
+                                        @endif
+                                        
+                                       
+                                    @endforeach
+                                </ul>
+                            </div><!-- End .widget -->
+                
+                            <div class="widget widget-box widget-shop-filter">
+                                <h3 class="widget-title">Filtro <a href="#" class="btn-category" role="button">Categorias<i class="fa fa-caret-down"></i></a></h3>
+                
+                                    <div class="filter-box">
+                                        <h5 class="filter-label">Ordenar por</h5>
+                                        <ul class="shop-filter-list">
+                                            <li><a href="#"><i class="fa fa-caret-right"></i>Default</a></li>
+                                            <li><a href="#"><i class="fa fa-caret-right"></i>Popularidade</a></li>
+                                            <li class="active"><a href="#"><i class="fa fa-caret-right"></i>Classificação média</a></li>
+                                            <li><a href="#"><i class="fa fa-caret-right"></i>Novidades</a></li>
+                                            <li><a href="#"><i class="fa fa-caret-right"></i>Preço: Baixo para alto</a></li>
+                                            <li><a href="#"><i class="fa fa-caret-right"></i>Preço: Alto para  baixo</a></li>
+                                        </ul>
+                                        <ul class="shop-category-list accordion">
+                                            <li>
+                                                <a href="#">Marca</a>
+                                            </li>
+                                        </ul>
+                                    </div><!-- End .filter-box -->
+                
+                                    <div class="filter-box">
+                                        <h5 class="filter-label">Preço <span class="filter-price-text"><span class="filter-price-prefix">$</span><span id="filter-price-range"></span></span></h5>
+                                        <div class="price-slider-wrapper">
+                                            <div id="price-slider"></div><!-- End #price-slider -->
+                                        </div><!-- End .price-slider-wrapper -->
+                                    </div><!-- End .filter-box -->
+                
+                                    <div class="filter-box">
+                                        <h5 class="filter-label">Cores</h5>
+                                        <div class="row">
+                                            @php
+                                                $colors = Color::all()
+                                            @endphp
+                                            
+                                            <div class="col-xs-6">
+                                                <ul class="filter-color-list">
+                                                    @for ($i = 0; $i < count($colors); $i++)
+                                                        @if ($i % 2 == 0)
+                                                            <li>
+                                                                <span class="filter-color" style="background-color: {{ $colors[$i]['code_color']}} ;"></span>
+                                                                <span class="filter-color-text">{{ $colors[$i]['name']}}</span>
+                                                            </li>
+                                                        @endif
+
+                                                    @endfor
+                                                    
+                                                </ul>
+                                            </div><!-- End col-xs-6 -->
+                
+                                            <div class="col-xs-6">
+                                                <ul class="filter-color-list">
+                                                    @for ($i = 0; $i < count($colors); $i++)
+                                                        @if ($i % 2 != 0)
+                                                            <li>
+                                                                <span class="filter-color" style="background-color: {{ $colors[$i]['code_color']}} ;"></span>
+                                                                <span class="filter-color-text">{{ $colors[$i]['name']}}</span>
+                                                            </li>
+                                                        @endif
+                                                    @endfor
+                                                </ul>
+                                            </div><!-- End col-xs-6 -->
+                                        </div><!-- End row -->
+                                    </div><!-- End .filter-box -->
+                
+                                    <a href="#" class="btn btn-apply btn-block">Aplicar filtro</a>
+                            </div><!-- End .widget -->
+                
+                            
+
+                            @yield('widget-banner')
+                
+
+                            @yield('widget-newsletter')
+                            
+
+                            @yield('widget-testimonial')
+                        </aside><!-- End .col-md-3 -->
+                    </div>
+                </div>
             </div><!-- End .main -->
         </div>
 

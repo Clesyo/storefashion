@@ -35,8 +35,6 @@ class ProductController extends Controller
 
     public function store(Request $req)
     {
-
-
         $product = new Product();
         $company = Company::findOrFail($req->product['company_id']);
         $notification = null;
